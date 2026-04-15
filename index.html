@@ -584,6 +584,184 @@
         .reveal-delay-4 { transition-delay: 0.4s; }
         .reveal-delay-5 { transition-delay: 0.5s; }
 
+        /* ===== TIMELINE (Historia card) ===== */
+        .neuro-timeline {
+            position: relative;
+            padding: 1rem 0;
+            max-height: 60vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--purple-soft) var(--purple-wash);
+        }
+
+        .neuro-timeline::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .neuro-timeline::-webkit-scrollbar-track {
+            background: var(--purple-wash);
+            border-radius: 3px;
+        }
+
+        .neuro-timeline::-webkit-scrollbar-thumb {
+            background: var(--purple-soft);
+            border-radius: 3px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--purple-soft), var(--purple), var(--purple-soft));
+            transform: translateX(-50%);
+        }
+
+        .timeline-event {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s var(--ease), transform 0.8s var(--ease);
+        }
+
+        .timeline-event.tl-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-event:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Alternating layout */
+        .timeline-event:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .timeline-event:nth-child(even) {
+            flex-direction: row;
+            text-align: left;
+        }
+
+        .timeline-content {
+            width: calc(50% - 28px);
+            padding: 1rem 1.2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            transition: box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.2rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--purple);
+            border: 3px solid var(--cream);
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 0 3px var(--purple-wash);
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+
+        .timeline-event:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        .timeline-event.golden .timeline-dot {
+            background: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+        }
+
+        .timeline-event.highlight .timeline-content {
+            background: linear-gradient(135deg, rgba(196,163,90,0.08) 0%, rgba(123,104,238,0.06) 100%);
+            border: 1px solid var(--gold-soft);
+        }
+
+        .timeline-event.highlight .timeline-dot {
+            background: var(--gold);
+            width: 18px;
+            height: 18px;
+            box-shadow: 0 0 0 4px var(--gold-soft), 0 0 12px rgba(196,163,90,0.3);
+        }
+
+        .timeline-year {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--purple);
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-event.golden .timeline-year,
+        .timeline-event.highlight .timeline-year {
+            color: var(--gold);
+        }
+
+        .timeline-title {
+            font-family: var(--sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ===== FUN FACTS ===== */
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(123,104,238,0.07) 0%, rgba(123,104,238,0.03) 100%);
+            border-top: 1px solid rgba(123,104,238,0.12);
+            border-bottom: 1px solid rgba(123,104,238,0.12);
+            border-radius: 8px;
+            padding: 1.3rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: default;
+        }
+
+        .fun-fact-label {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        .fun-fact-text {
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-soft);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .card-expanded-inner {
@@ -601,6 +779,10 @@
 
             .card-expanded-text {
                 padding: 2rem 1.5rem 2.5rem;
+            }
+
+            .neuro-timeline {
+                max-height: 50vh;
             }
         }
 
@@ -664,6 +846,43 @@
 
             .topics-section {
                 padding: 3rem 1rem 4rem;
+            }
+
+            /* Timeline mobile: stack vertically, left-aligned */
+            .timeline-line {
+                left: 16px;
+            }
+
+            .timeline-event,
+            .timeline-event:nth-child(odd),
+            .timeline-event:nth-child(even) {
+                flex-direction: row !important;
+                text-align: left !important;
+                padding-left: 40px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 16px;
+            }
+
+            .timeline-event.highlight .timeline-dot {
+                left: 16px;
+            }
+
+            .timeline-year {
+                font-size: 1.1rem;
+            }
+
+            .fun-fact {
+                padding: 1rem 1.2rem;
+            }
+
+            .fun-fact-text {
+                font-size: 0.88rem;
             }
         }
     </style>
@@ -735,8 +954,126 @@
                         <div class="card-tag">Historia</div>
                         <h3 class="card-title">Historia de la Neurociencia</h3>
                         <p class="card-question">De los inicios a la actualidad</p>
-                        <p class="card-body">Desde las trepanaciones prehistóricas hasta la resonancia magnética funcional, la neurociencia ha evolucionado a través de siglos de curiosidad, experimentos audaces y descubrimientos que transformaron nuestra comprensión del cerebro.</p>
-                        <div class="card-detail">De "el corazón es la sede del alma" (Aristóteles) a mapear 86 mil millones de neuronas. Hipócrates fue el primero en decir que el cerebro era el órgano del pensamiento. Galeno lo confirmó con disecciones. Cajal lo dibujó. Y nosotros seguimos descifrándolo.</div>
+                        <div class="neuro-timeline" id="neuro-timeline">
+                            <div class="timeline-line"></div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">~6500 a.C.</div>
+                                    <div class="timeline-title">Trepanaciones prehistóricas</div>
+                                    <div class="timeline-desc">Los primeros humanos perforaban cráneos, posiblemente para "liberar espíritus malignos". Evidencia arqueológica en Perú y Francia.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">~400 a.C.</div>
+                                    <div class="timeline-title">Hipócrates y el cerebro</div>
+                                    <div class="timeline-desc">Hipócrates declara que el cerebro es el órgano del pensamiento, no el corazón. Contradice a Aristóteles.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">~170 d.C.</div>
+                                    <div class="timeline-title">Galeno y los nervios craneales</div>
+                                    <div class="timeline-desc">Galeno realiza disecciones de animales en Roma y mapea nervios craneales. Sus escritos dominan la medicina por 1,400 años.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1543</div>
+                                    <div class="timeline-title">Vesalio y la anatomía</div>
+                                    <div class="timeline-desc">Andreas Vesalio publica "De humani corporis fabrica" con las primeras ilustraciones anatómicas detalladas del cerebro.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event highlight">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1632</div>
+                                    <div class="timeline-title">Rembrandt y la lección de anatomía</div>
+                                    <div class="timeline-desc">Rembrandt pinta "La lección de anatomía del Dr. Tulp". La disección se vuelve espectáculo público y ciencia. ✨ <em>La pintura de esta tarjeta.</em></div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1664</div>
+                                    <div class="timeline-title">Willis acuña "neurología"</div>
+                                    <div class="timeline-desc">Thomas Willis publica "Cerebri Anatome", el primer atlas completo del cerebro. Acuña el término "neurología".</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1848</div>
+                                    <div class="timeline-title">El caso Phineas Gage</div>
+                                    <div class="timeline-desc">Phineas Gage sobrevive a una barra de metal que atraviesa su lóbulo frontal. Su cambio de personalidad demuestra que el cerebro tiene regiones especializadas.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1861</div>
+                                    <div class="timeline-title">El área de Broca</div>
+                                    <div class="timeline-desc">Paul Broca identifica el área del lenguaje en el lóbulo frontal izquierdo tras estudiar a un paciente que solo podía decir "tan".</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1906</div>
+                                    <div class="timeline-title">Ramón y Cajal — Nobel</div>
+                                    <div class="timeline-desc">Santiago Ramón y Cajal gana el Nobel por demostrar que el sistema nervioso son células individuales (neuronas), no una red continua.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1949</div>
+                                    <div class="timeline-title">Regla de Hebb</div>
+                                    <div class="timeline-desc">Donald Hebb propone que "las neuronas que disparan juntas, se conectan juntas". Base de la neuroplasticidad moderna.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">1990s</div>
+                                    <div class="timeline-title">La Década del Cerebro</div>
+                                    <div class="timeline-desc">La fMRI permite ver el cerebro en acción por primera vez. Neurociencia explota como campo.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">2012</div>
+                                    <div class="timeline-title">Sistema glinfático</div>
+                                    <div class="timeline-desc">Descubrimiento del sistema glinfático: el cerebro se lava durante el sueño eliminando proteínas tóxicas.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+
+                            <div class="timeline-event golden">
+                                <div class="timeline-content">
+                                    <div class="timeline-year">2023–hoy</div>
+                                    <div class="timeline-title">IA y neurociencia convergen</div>
+                                    <div class="timeline-desc">Modelos de lenguaje inspiran nuevas teorías sobre cómo el cerebro procesa información. La frontera se difumina.</div>
+                                </div>
+                                <div class="timeline-dot"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -781,6 +1118,12 @@
                 </div>
             </div>
         </article>
+
+        <!-- FUN FACT 1 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">Tu cerebro consume el 20% de toda tu energía, aunque solo representa el 2% de tu peso corporal.</p>
+        </div>
 
         <!-- CARD 3: EPILEPSIA -->
         <article class="topic-card reveal reveal-delay-2" data-card="epilepsia">
@@ -902,6 +1245,12 @@
             </div>
         </article>
 
+        <!-- FUN FACT 2 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">El cerebro humano tiene aproximadamente 86 mil millones de neuronas — más que las estrellas en la Vía Láctea.</p>
+        </div>
+
         <!-- CARD 6: MEMORIA -->
         <article class="topic-card reveal reveal-delay-5" data-card="memoria">
             <!-- Collapsed -->
@@ -1021,6 +1370,12 @@
                 </div>
             </div>
         </article>
+
+        <!-- FUN FACT 3 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">Los pulpos tienen 2/3 de sus neuronas en los tentáculos. Literalmente piensan con los brazos.</p>
+        </div>
 
         <!-- CARD 9: ENAMORAMIENTO -->
         <article class="topic-card reveal reveal-delay-2" data-card="enamoramiento">
@@ -1142,6 +1497,12 @@
             </div>
         </article>
 
+        <!-- FUN FACT 4 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">Tu cerebro no tiene receptores de dolor. Puedes operar un cerebro con el paciente despierto — y lo hacen.</p>
+        </div>
+
         <!-- CARD 12: ADICCIONES -->
         <article class="topic-card reveal reveal-delay-5" data-card="adicciones">
             <!-- Collapsed -->
@@ -1261,6 +1622,12 @@
                 </div>
             </div>
         </article>
+
+        <!-- FUN FACT 5 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">Soñamos un promedio de 6 años a lo largo de nuestra vida. Y olvidamos el 95% de esos sueños en los primeros 5 minutos al despertar.</p>
+        </div>
 
         <!-- CARD 15: EMOCIONES -->
         <article class="topic-card reveal reveal-delay-2" data-card="emociones">
@@ -1382,6 +1749,12 @@
             </div>
         </article>
 
+        <!-- FUN FACT 6 -->
+        <div class="fun-fact reveal" style="grid-column: 1 / -1;">
+            <span class="fun-fact-label">🧠 ¿Sabías que...?</span>
+            <p class="fun-fact-text">El olor es el sentido más conectado con la memoria. Un aroma puede disparar recuerdos de hace décadas en milisegundos.</p>
+        </div>
+
         <!-- CARD 18: CEREBRO ADOLESCENTE -->
         <article class="topic-card reveal reveal-delay-5" data-card="adolescente">
             <!-- Collapsed -->
@@ -1495,6 +1868,11 @@ function expandCard(card) {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const targetY = scrollTop + rect.top - 24;
             window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+            // If this is the Historia card, observe timeline events after expansion
+            if (card.dataset.card === 'historia') {
+                initTimelineObserver();
+            }
         }, 50);
     }
 }
@@ -1520,6 +1898,44 @@ document.addEventListener('keydown', (e) => {
         collapseAll(null);
     }
 });
+
+// ===== Timeline IntersectionObserver =====
+function initTimelineObserver() {
+    const timeline = document.getElementById('neuro-timeline');
+    if (!timeline) return;
+
+    const events = timeline.querySelectorAll('.timeline-event');
+
+    // Use the timeline scroll container as root
+    const tlObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('tl-visible');
+            }
+        });
+    }, {
+        root: timeline,
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    events.forEach((ev, i) => {
+        ev.style.transitionDelay = (i * 0.08) + 's';
+        ev.classList.remove('tl-visible');
+        tlObserver.observe(ev);
+    });
+
+    // Also trigger for events already in view after a brief delay
+    setTimeout(() => {
+        events.forEach(ev => {
+            const rect = ev.getBoundingClientRect();
+            const tlRect = timeline.getBoundingClientRect();
+            if (rect.top < tlRect.bottom && rect.bottom > tlRect.top) {
+                ev.classList.add('tl-visible');
+            }
+        });
+    }, 100);
+}
 </script>
 
 </body>
