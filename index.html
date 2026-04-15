@@ -848,6 +848,298 @@
             max-width: 600px;
         }
 
+        /* ===== CATEGORY FILTERS ===== */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-btn {
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 0.5rem 1.3rem;
+            border-radius: 50px;
+            border: 2px solid var(--purple);
+            background: transparent;
+            color: var(--purple);
+            cursor: pointer;
+            transition: background 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth), transform 0.2s var(--ease);
+        }
+
+        .filter-btn:hover {
+            background: var(--purple-wash);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background: var(--purple);
+            color: white;
+            border-color: var(--purple);
+        }
+
+        .topic-card,
+        .fun-fact {
+            transition: box-shadow 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth), opacity 0.35s var(--ease-smooth);
+        }
+
+        .topic-card.filter-hidden,
+        .fun-fact.filter-hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+        }
+
+        /* ===== READING MODE OVERLAY ===== */
+        .reading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: var(--cream);
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-smooth);
+        }
+
+        .reading-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .reading-overlay-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        .reading-close-btn {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            z-index: 210;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--sand);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text);
+            transition: background 0.3s, transform 0.3s;
+            line-height: 1;
+        }
+
+        .reading-close-btn:hover {
+            background: var(--purple-wash);
+            transform: scale(1.1);
+        }
+
+        .reading-overlay .reading-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .reading-overlay .reading-title {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .reading-overlay .reading-question {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold);
+            line-height: 1.6;
+            margin-bottom: 1.8rem;
+        }
+
+        .reading-overlay .reading-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .reading-overlay .reading-painting-info {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            padding: 1rem 1.2rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .reading-overlay .reading-painting-info .artist {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .reading-overlay .reading-body {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .reading-overlay .reading-body strong {
+            color: var(--text);
+        }
+
+        .reading-overlay .reading-detail {
+            font-size: 1rem;
+            color: var(--text-soft);
+            line-height: 1.9;
+            padding: 1.2rem 1.4rem;
+            background: var(--purple-wash);
+            border-left: 3px solid var(--purple-soft);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+
+        .reading-overlay .reading-timeline-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .reading-overlay .reading-timeline-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--sand);
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        .reading-overlay .reading-timeline-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reading-overlay .reading-timeline-list .tl-year {
+            font-family: var(--serif);
+            font-weight: 700;
+            color: var(--purple);
+            margin-right: 0.5rem;
+        }
+
+        .reading-overlay .reading-timeline-list .tl-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Reading mode button in expanded card */
+        .card-reading-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 3.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--purple-wash);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease);
+            z-index: 5;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .card-reading-btn:hover {
+            background: var(--purple-glow);
+            transform: scale(1.1);
+        }
+
+        /* ===== PAINTING LIGHTBOX ===== */
+        .painting-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(0,0,0,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-smooth);
+        }
+
+        .painting-lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            z-index: 310;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            transition: background 0.3s, transform 0.3s;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .lightbox-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 90vw;
+            max-height: 95vh;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+        }
+
+        .lightbox-caption {
+            color: var(--sand);
+            font-size: 0.88rem;
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .card-expanded-inner {
@@ -1015,12 +1307,19 @@
     <div class="topics-header">
         <div class="topic-tag reveal">Galería</div>
         <h2 class="reveal reveal-delay-1">Explora los temas</h2>
+        <div class="filter-bar reveal reveal-delay-2">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="historia">Historia</button>
+            <button class="filter-btn" data-filter="sentidos">Sentidos</button>
+            <button class="filter-btn" data-filter="emociones">Emociones</button>
+            <button class="filter-btn" data-filter="cerebro">Cerebro</button>
+        </div>
     </div>
 
     <div class="cards-grid">
 
         <!-- CARD 1: HISTORIA -->
-        <article class="topic-card reveal" id="historia" data-card="historia">
+        <article class="topic-card reveal" id="historia" data-card="historia" data-category="historia">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1040,6 +1339,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/rembrandt-anatomy.jpg" alt="Lección de anatomía del Dr. Nicolaes Tulp — Rembrandt, 1632">
@@ -1178,7 +1478,7 @@
         </article>
 
         <!-- CARD 2: BOSTEZOS -->
-        <article class="topic-card reveal reveal-delay-1" id="bostezos" data-card="bostezos">
+        <article class="topic-card reveal reveal-delay-1" id="bostezos" data-card="bostezos" data-category="sentidos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1198,6 +1498,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/ducreux-yawn.jpg" alt="El que bosteza — Joseph Ducreux, c. 1783">
@@ -1224,7 +1525,7 @@
         </div>
 
         <!-- CARD 3: EPILEPSIA -->
-        <article class="topic-card reveal reveal-delay-2" id="epilepsia" data-card="epilepsia">
+        <article class="topic-card reveal reveal-delay-2" id="epilepsia" data-card="epilepsia" data-category="cerebro">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1244,6 +1545,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/vangogh-starrynight.jpg" alt="La Noche Estrellada — Vincent van Gogh, 1889">
@@ -1264,7 +1566,7 @@
         </article>
 
         <!-- CARD 4: SUEÑO -->
-        <article class="topic-card reveal reveal-delay-3" id="sueno" data-card="sueno">
+        <article class="topic-card reveal reveal-delay-3" id="sueno" data-card="sueno" data-category="cerebro">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1284,6 +1586,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/rousseau-gypsy.jpg" alt="La Gitana Dormida — Henri Rousseau, 1897">
@@ -1304,7 +1607,7 @@
         </article>
 
         <!-- CARD 5: DOPAMINA -->
-        <article class="topic-card reveal reveal-delay-4" id="dopamina" data-card="dopamina">
+        <article class="topic-card reveal reveal-delay-4" id="dopamina" data-card="dopamina" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1324,6 +1627,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/klimt-kiss.jpg" alt="El Beso — Gustav Klimt, 1907-1908">
@@ -1350,7 +1654,7 @@
         </div>
 
         <!-- CARD 6: MEMORIA -->
-        <article class="topic-card reveal reveal-delay-5" id="memoria" data-card="memoria">
+        <article class="topic-card reveal reveal-delay-5" id="memoria" data-card="memoria" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1370,6 +1674,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/dali-memory.jpg" alt="La persistencia de la memoria — Salvador Dalí, 1931">
@@ -1390,7 +1695,7 @@
         </article>
 
         <!-- CARD 7: ILUSIONES ÓPTICAS -->
-        <article class="topic-card reveal" id="ilusiones" data-card="ilusiones">
+        <article class="topic-card reveal" id="ilusiones" data-card="ilusiones" data-category="sentidos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1410,6 +1715,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/arcimboldo-vertumnus.jpg" alt="Vertumnus — Giuseppe Arcimboldo, 1591">
@@ -1430,7 +1736,7 @@
         </article>
 
         <!-- CARD 8: MÚSICA Y CEREBRO -->
-        <article class="topic-card reveal reveal-delay-1" id="musica" data-card="musica">
+        <article class="topic-card reveal reveal-delay-1" id="musica" data-card="musica" data-category="sentidos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1450,6 +1756,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/picasso-guitarist.jpg" alt="El viejo guitarrista ciego — Pablo Picasso, 1903-04">
@@ -1476,7 +1783,7 @@
         </div>
 
         <!-- CARD 9: ENAMORAMIENTO -->
-        <article class="topic-card reveal reveal-delay-2" id="enamoramiento" data-card="enamoramiento">
+        <article class="topic-card reveal reveal-delay-2" id="enamoramiento" data-card="enamoramiento" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1496,6 +1803,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/botticelli-venus.jpg" alt="El nacimiento de Venus — Sandro Botticelli, c. 1485">
@@ -1516,7 +1824,7 @@
         </article>
 
         <!-- CARD 10: ESTRÉS -->
-        <article class="topic-card reveal reveal-delay-3" id="estres" data-card="estres">
+        <article class="topic-card reveal reveal-delay-3" id="estres" data-card="estres" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1536,6 +1844,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/munch-scream.jpg" alt="El grito — Edvard Munch, 1893">
@@ -1556,7 +1865,7 @@
         </article>
 
         <!-- CARD 11: NEUROPLASTICIDAD -->
-        <article class="topic-card reveal reveal-delay-4" id="neuroplasticidad" data-card="neuroplasticidad">
+        <article class="topic-card reveal reveal-delay-4" id="neuroplasticidad" data-card="neuroplasticidad" data-category="cerebro">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1576,6 +1885,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/kandinsky-composition.jpg" alt="Composición VIII — Wassily Kandinsky, 1923">
@@ -1602,7 +1912,7 @@
         </div>
 
         <!-- CARD 12: ADICCIONES -->
-        <article class="topic-card reveal reveal-delay-5" id="adicciones" data-card="adicciones">
+        <article class="topic-card reveal reveal-delay-5" id="adicciones" data-card="adicciones" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1622,6 +1932,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/bosch-garden.jpg" alt="El jardín de las delicias — Hieronymus Bosch, c. 1490-1510">
@@ -1642,7 +1953,7 @@
         </article>
 
         <!-- CARD 13: LENGUAJE -->
-        <article class="topic-card reveal" id="lenguaje" data-card="lenguaje">
+        <article class="topic-card reveal" id="lenguaje" data-card="lenguaje" data-category="cerebro">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1662,6 +1973,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/brueghel-babel.jpg" alt="La Torre de Babel — Pieter Brueghel el Viejo, 1563">
@@ -1682,7 +1994,7 @@
         </article>
 
         <!-- CARD 14: DOLOR -->
-        <article class="topic-card reveal reveal-delay-1" id="dolor" data-card="dolor">
+        <article class="topic-card reveal reveal-delay-1" id="dolor" data-card="dolor" data-category="sentidos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1702,6 +2014,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/rubens-prometheus.jpg" alt="Prometeo encadenado — Peter Paul Rubens, 1611-12">
@@ -1728,7 +2041,7 @@
         </div>
 
         <!-- CARD 15: EMOCIONES -->
-        <article class="topic-card reveal reveal-delay-2" id="emociones" data-card="emociones">
+        <article class="topic-card reveal reveal-delay-2" id="emociones" data-card="emociones" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1748,6 +2061,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/goya-saturn.jpg" alt="Saturno devorando a su hijo — Francisco de Goya, 1819-23">
@@ -1768,7 +2082,7 @@
         </article>
 
         <!-- CARD 16: DÉJÀ VU -->
-        <article class="topic-card reveal reveal-delay-3" id="dejavu" data-card="dejavu">
+        <article class="topic-card reveal reveal-delay-3" id="dejavu" data-card="dejavu" data-category="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1788,6 +2102,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/magritte-empire.jpg" alt="El imperio de las luces — René Magritte, 1953-54">
@@ -1808,7 +2123,7 @@
         </article>
 
         <!-- CARD 17: SINESTESIA -->
-        <article class="topic-card reveal reveal-delay-4" id="sinestesia" data-card="sinestesia">
+        <article class="topic-card reveal reveal-delay-4" id="sinestesia" data-card="sinestesia" data-category="sentidos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1828,6 +2143,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/kandinsky-yellow-red-blue.jpg" alt="Amarillo-Rojo-Azul — Wassily Kandinsky, 1925">
@@ -1854,7 +2170,7 @@
         </div>
 
         <!-- CARD 18: CEREBRO ADOLESCENTE -->
-        <article class="topic-card reveal reveal-delay-5" id="adolescente" data-card="adolescente">
+        <article class="topic-card reveal reveal-delay-5" id="adolescente" data-card="adolescente" data-category="cerebro">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1874,6 +2190,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
                         <img src="img/matisse-icarus.jpg" alt="Ícaro (Jazz) — Henri Matisse, 1947">
@@ -1912,6 +2229,21 @@
         </div>
     </div>
 </section>
+
+<!-- ===== READING MODE OVERLAY ===== -->
+<div class="reading-overlay" id="readingOverlay">
+    <button class="reading-close-btn" id="readingCloseBtn" aria-label="Cerrar">&times;</button>
+    <div class="reading-overlay-inner" id="readingContent"></div>
+</div>
+
+<!-- ===== PAINTING LIGHTBOX ===== -->
+<div class="painting-lightbox" id="paintingLightbox">
+    <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+    <div class="lightbox-content">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer>
@@ -1997,7 +2329,12 @@ cards.forEach(card => {
 // Escape key to close any open card
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        collapseAll(null);
+        // Only collapse cards if no overlay is active
+        const readingActive = document.getElementById('readingOverlay')?.classList.contains('active');
+        const lightboxActive = document.getElementById('paintingLightbox')?.classList.contains('active');
+        if (!readingActive && !lightboxActive) {
+            collapseAll(null);
+        }
     }
 });
 
@@ -2081,6 +2418,199 @@ function initTimelineObserver() {
         });
     }, 100);
 }
+// ===== FEATURE 1: CATEGORY FILTERS =====
+(function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const allCards = document.querySelectorAll('.topic-card');
+    const funFacts = document.querySelectorAll('.fun-fact');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Collapse any expanded card first
+            allCards.forEach(card => {
+                if (card.classList.contains('expanded')) {
+                    card.classList.remove('expanded');
+                }
+            });
+
+            if (filter === 'todos') {
+                // Show everything
+                allCards.forEach(card => card.classList.remove('filter-hidden'));
+                funFacts.forEach(ff => ff.classList.remove('filter-hidden'));
+            } else {
+                // Filter cards
+                allCards.forEach(card => {
+                    if (card.dataset.category === filter) {
+                        card.classList.remove('filter-hidden');
+                    } else {
+                        card.classList.add('filter-hidden');
+                    }
+                });
+                // Hide fun facts when filtering
+                funFacts.forEach(ff => ff.classList.add('filter-hidden'));
+            }
+        });
+    });
+})();
+
+// ===== FEATURE 2: READING MODE =====
+(function() {
+    const overlay = document.getElementById('readingOverlay');
+    const contentContainer = document.getElementById('readingContent');
+    const closeBtn = document.getElementById('readingCloseBtn');
+
+    function openReadingMode(card) {
+        const expandedText = card.querySelector('.card-expanded-text');
+        const expandedImage = card.querySelector('.card-expanded-image');
+        if (!expandedText || !expandedImage) return;
+
+        const tag = expandedText.querySelector('.card-tag')?.textContent || '';
+        const title = expandedText.querySelector('.card-title')?.textContent || '';
+        const question = expandedText.querySelector('.card-question')?.textContent || '';
+        const imgEl = expandedImage.querySelector('img');
+        const imgSrc = imgEl ? imgEl.src : '';
+        const imgAlt = imgEl ? imgEl.alt : '';
+        const paintingInfo = expandedImage.querySelector('.card-painting-info')?.innerHTML || '';
+        const bodyEl = expandedText.querySelector('.card-body');
+        const bodyHTML = bodyEl ? bodyEl.innerHTML : '';
+        const detailEl = expandedText.querySelector('.card-detail');
+        const detailHTML = detailEl ? detailEl.innerHTML : '';
+
+        let html = '';
+        html += '<div class="reading-tag">' + tag + '</div>';
+        html += '<h1 class="reading-title">' + title + '</h1>';
+        html += '<p class="reading-question">' + question + '</p>';
+        if (imgSrc) {
+            html += '<img class="reading-image" src="' + imgSrc + '" alt="' + imgAlt + '">';
+        }
+        if (paintingInfo) {
+            html += '<div class="reading-painting-info">' + paintingInfo + '</div>';
+        }
+        if (bodyHTML) {
+            html += '<div class="reading-body">' + bodyHTML + '</div>';
+        }
+        if (detailHTML) {
+            html += '<div class="reading-detail">' + detailHTML + '</div>';
+        }
+
+        // Special handling for Historia card timeline
+        if (card.dataset.card === 'historia') {
+            const timelineEvents = card.querySelectorAll('.timeline-event');
+            if (timelineEvents.length > 0) {
+                html += '<h2 class="reading-title" style="font-size:1.2rem; margin-top:1rem;">Línea del tiempo</h2>';
+                html += '<ul class="reading-timeline-list">';
+                timelineEvents.forEach(ev => {
+                    const year = ev.querySelector('.timeline-year')?.textContent || '';
+                    const tlTitle = ev.querySelector('.timeline-title')?.textContent || '';
+                    const desc = ev.querySelector('.timeline-desc')?.textContent || '';
+                    html += '<li><span class="tl-year">' + year + '</span> <span class="tl-title">' + tlTitle + '</span><br>' + desc + '</li>';
+                });
+                html += '</ul>';
+            }
+        }
+
+        contentContainer.innerHTML = html;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        overlay.scrollTop = 0;
+    }
+
+    function closeReadingMode() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeReadingMode);
+
+    // ESC key closes reading mode
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeReadingMode();
+            e.stopPropagation();
+        }
+    });
+
+    // Attach click to all reading buttons
+    document.querySelectorAll('.card-reading-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const card = btn.closest('.topic-card');
+            if (card) openReadingMode(card);
+        });
+    });
+})();
+
+// ===== FEATURE 3: PAINTING LIGHTBOX =====
+(function() {
+    const lightbox = document.getElementById('paintingLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    function openLightbox(src, alt, captionHTML) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightboxCaption.innerHTML = captionHTML;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        // Only restore body scroll if reading mode is not also open
+        const readingOverlay = document.getElementById('readingOverlay');
+        if (!readingOverlay || !readingOverlay.classList.contains('active')) {
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Click on expanded card painting images
+    document.addEventListener('click', (e) => {
+        const img = e.target.closest('.card-expanded-image img');
+        if (!img) return;
+        e.stopPropagation();
+        const container = img.closest('.card-expanded-image');
+        const paintingInfo = container?.querySelector('.card-painting-info');
+        const captionHTML = paintingInfo ? paintingInfo.innerHTML : '';
+        openLightbox(img.src, img.alt, captionHTML);
+    });
+
+    // Make images show pointer cursor
+    document.querySelectorAll('.card-expanded-image img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+    });
+
+    lightboxClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLightbox();
+    });
+
+    // Click outside image closes lightbox
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Prevent click propagation from content
+    lightbox.querySelector('.lightbox-content').addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // ESC key closes lightbox
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+            e.stopPropagation();
+        }
+    });
+})();
 </script>
 
 </body>
