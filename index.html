@@ -1,155 +1,629 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerebro Cotidiano — Neurociencia en la vida diaria</title>
-    <meta name="description" content="Neurociencia que puedes entender. Bostezos, sueño, memoria, emociones — tu cerebro explicado.">
+    <meta name="description" content="Neurociencia que puedes entender. Bostezos, sueño, memoria, emociones — tu cerebro explicado a través del arte.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --black:#0a0a0a; --dark:#141414; --gold:#c4a35a; --gold-dim:rgba(196,163,90,0.15); --gray:#888; --white:#f0ece4; --accent:#7b68ee; --accent-dim:rgba(123,104,238,0.15); --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',sans-serif; --bg:var(--black); --text:var(--white); --text-dim:var(--gray); --card-bg:rgba(255,255,255,0.03); --card-border:rgba(255,255,255,0.06); --transition:cubic-bezier(0.16,1,0.3,1); }
-        [data-theme="light"] { --bg:#f5f0eb; --text:#1a1a1a; --text-dim:#666; --card-bg:#fff; --card-border:#e0d8ce; --gold-dim:rgba(196,163,90,0.12); --accent-dim:rgba(123,104,238,0.1); }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; background:var(--bg); color:var(--text); transition:background 0.6s var(--transition), color 0.4s; }
-        body { font-family:var(--sans); line-height:1.8; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-        body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-        ::selection { background:var(--accent); color:white; }
+        :root {
+            --cream: #faf6f0;
+            --warm-white: #f5efe6;
+            --sand: #e8ddd0;
+            --text: #2a2420;
+            --text-soft: #5a524a;
+            --text-muted: #8a8078;
+            --purple: #7b68ee;
+            --purple-soft: #9d8ff2;
+            --purple-wash: rgba(123,104,238,0.08);
+            --purple-glow: rgba(123,104,238,0.15);
+            --gold: #c4a35a;
+            --gold-soft: rgba(196,163,90,0.2);
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Source Sans 3', system-ui, sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-        .panel { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:4rem 2rem; }
-        .content { max-width:800px; width:100%; margin:0 auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        h1,h2,h3 { font-family:var(--serif); font-weight:300; letter-spacing:-0.02em; }
-        .gold { color:var(--gold); }
-        .accent { color:var(--accent); }
-        .dim { color:var(--text-dim); }
-        .small { font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:500; }
+        html { scroll-behavior: smooth; }
 
-        /* Hero */
-        .hero h1 { font-size:clamp(2.5rem,7vw,5rem); line-height:1.1; text-align:center; margin-bottom:1.5rem; }
-        .hero p { font-size:1.1rem; color:var(--text-dim); text-align:center; max-width:500px; margin:0 auto; }
-        .brain-emoji { font-size:4rem; display:block; text-align:center; margin-bottom:1.5rem; }
+        body {
+            font-family: var(--sans);
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-        /* Cards grid */
-        .cards-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.5rem; padding:2rem 2rem 6rem; max-width:1000px; margin:0 auto; }
-        .card { padding:2.5rem; border:1px solid var(--card-border); border-radius:12px; background:var(--card-bg); transition:all 0.4s var(--transition); cursor:pointer; }
-        .card:hover { border-color:var(--accent); transform:translateY(-4px); background:var(--accent-dim); }
-        .card-emoji { font-size:2.5rem; margin-bottom:1rem; }
-        .card-tag { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); margin-bottom:0.5rem; font-weight:600; }
-        .card h3 { font-size:1.3rem; margin-bottom:0.3rem; font-weight:400; }
-        .card .question { font-family:var(--serif); font-style:italic; font-size:1rem; color:var(--gold); margin-bottom:1rem; }
-        .card p { font-size:0.9rem; color:var(--text-dim); line-height:1.7; }
+        ::selection { background: var(--purple); color: white; }
 
-        /* Footer */
-        footer { text-align:center; padding:4rem 2rem; font-size:0.85rem; color:var(--text-dim); }
-        footer strong { color:var(--text); }
-        footer a { color:var(--accent); text-decoration:none; }
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--cream) 0%, #f0e8dc 50%, #ece3d5 100%);
+        }
 
-        /* Theme toggle */
-        .theme-toggle { position:fixed; top:1rem; right:1rem; background:none; border:1px solid var(--card-border); color:var(--text-dim); padding:0.4rem 0.7rem; border-radius:4px; cursor:pointer; font-size:0.85rem; z-index:100; transition:all 0.3s; }
-        .theme-toggle:hover { color:var(--accent); border-color:var(--accent); }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, var(--purple-wash) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
 
-        /* Fade in */
-        .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--transition), transform 1s var(--transition); }
-        .fade-in.visible { opacity:1; transform:translateY(0); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
 
-        @media(max-width:600px) { .cards-grid { grid-template-columns:1fr; padding:1rem; } .card { padding:2rem; } }
+        .hero-content {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .hero-tag {
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--purple);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-soft);
+            font-weight: 300;
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cajal {
+            margin-top: 2rem;
+            opacity: 0.12;
+            max-width: 300px;
+            filter: sepia(30%);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-hint svg {
+            width: 20px;
+            stroke: var(--text-muted);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ===== INTRO ===== */
+        .intro {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
+        .intro-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .intro p {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.9;
+            color: var(--text-soft);
+        }
+
+        .intro p strong {
+            color: var(--text);
+        }
+
+        .divider {
+            width: 50px;
+            height: 2px;
+            background: var(--purple-soft);
+            margin: 2rem auto;
+            border-radius: 1px;
+        }
+
+        /* ===== TOPIC SECTIONS ===== */
+        .topic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            border-top: 1px solid var(--sand);
+        }
+
+        .topic:nth-child(even) {
+            direction: rtl;
+        }
+
+        .topic:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .topic-image {
+            position: relative;
+            overflow: hidden;
+            background: var(--warm-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .topic-image img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            transition: transform 0.8s var(--ease);
+        }
+
+        .topic-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .painting-info {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s var(--ease);
+        }
+
+        .painting-info .artist {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .topic-image:hover .painting-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .topic-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 3.5rem;
+        }
+
+        .topic-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .topic-text h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .topic-question {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-body {
+            font-size: 1rem;
+            color: var(--text-soft);
+            line-height: 1.9;
+        }
+
+        .topic-body strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .topic-detail {
+            margin-top: 1.2rem;
+            padding: 1rem 1.2rem;
+            background: var(--purple-wash);
+            border-left: 3px solid var(--purple-soft);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        /* Alternate background colors for variety */
+        .topic.bg-white { background: white; }
+        .topic.bg-cream { background: var(--cream); }
+        .topic.bg-warm { background: var(--warm-white); }
+        .topic.bg-purple { background: linear-gradient(135deg, #f8f6ff 0%, #f0ecff 100%); }
+
+        .topic.bg-white .topic-image,
+        .topic.bg-cream .topic-image,
+        .topic.bg-warm .topic-image,
+        .topic.bg-purple .topic-image { background: transparent; }
+
+        /* ===== CAJAL SECTION ===== */
+        .cajal-tribute {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+            border-top: 1px solid var(--sand);
+        }
+
+        .cajal-tribute .inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cajal-tribute h2 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .cajal-tribute p {
+            font-size: 1rem;
+            color: var(--text-soft);
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .cajal-gallery {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cajal-gallery img {
+            width: 200px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            filter: sepia(15%);
+            transition: all 0.4s var(--ease);
+        }
+
+        .cajal-gallery img:hover {
+            filter: sepia(0%);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: white;
+            border-top: 1px solid var(--sand);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .title {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--purple);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--ease), transform 1s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .topic {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .topic:nth-child(even) {
+                direction: ltr;
+            }
+
+            .topic-image {
+                min-height: 300px;
+                padding: 2rem;
+            }
+
+            .topic-image img {
+                max-height: 300px;
+            }
+
+            .painting-info {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 0.75rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .topic-text {
+                padding: 2.5rem 1.5rem 3rem;
+            }
+
+            .cajal-gallery img {
+                width: 140px;
+                height: 180px;
+            }
+
+            .hero-cajal {
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<button class="theme-toggle" onclick="toggleTheme()">☀️</button>
-
-<!-- HERO -->
-<section class="panel">
-    <div class="content fade-in">
-        <div class="brain-emoji">🧠</div>
-        <h1>Cerebro<br><span class="accent">Cotidiano</span></h1>
-        <p>Neurociencia que puedes entender. Tu cerebro hace cosas increíbles todo el día — y ni te enteras.</p>
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-tag reveal">Neurociencia · Arte · Vida diaria</div>
+        <h1 class="reveal reveal-delay-1">Cerebro<br><em>Cotidiano</em></h1>
+        <p class="hero-subtitle reveal reveal-delay-2">Tu cerebro hace cosas increíbles todo el día — y ni te enteras. Aquí las exploramos, con ciencia y con arte.</p>
+        <img class="hero-cajal reveal reveal-delay-3" src="img/cajal-brain.jpg" alt="Dibujo de neuronas por Santiago Ramón y Cajal">
+    </div>
+    <div class="scroll-hint">
+        <span>Explora</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
 </section>
 
-<!-- CARDS -->
-<div class="cards-grid">
-
-    <div class="card fade-in">
-        <div class="card-emoji">🥱</div>
-        <div class="card-tag">Termorregulación</div>
-        <h3>Bostezando</h3>
-        <div class="question">¿Qué significa un bostezo?</div>
-        <p>Según un estudio de Gary Hack (Universidad de Maryland), cuando bostezamos estamos <strong style="color:var(--text);">enfriando nuestro cerebro</strong>. El bostezo aumenta el flujo de sangre fría hacia el cerebro y expulsa la sangre caliente. No es aburrimiento — es termorregulación.</p>
+<!-- ===== INTRO ===== -->
+<section class="intro">
+    <div class="intro-inner">
+        <p class="reveal">Cada tema de neurociencia está acompañado de una <strong>obra de arte</strong> que conecta con su esencia. Porque el cerebro no solo se estudia — también se contempla.</p>
+        <div class="divider reveal reveal-delay-1"></div>
+        <p class="reveal reveal-delay-2" style="font-size:1rem; color:var(--text-muted); font-family:var(--sans);">Las ilustraciones de <strong style="color:var(--text-soft);">Santiago Ramón y Cajal</strong> (Nobel 1906) son donde la ciencia se hizo arte por primera vez.</p>
     </div>
+</section>
 
-    <div class="card fade-in">
-        <div class="card-emoji">⚡</div>
-        <div class="card-tag">Actividad neuronal</div>
-        <h3>Epilepsia</h3>
-        <div class="question">¿Qué sucede durante una convulsión?</div>
-        <p>Las convulsiones se producen por un <strong style="color:var(--text);">patrón anormal de actividad neuronal</strong>. Imagina que todas las neuronas de una zona del cerebro se disparan al mismo tiempo, como si una orquesta tocara todas las notas a la vez. El resultado es una tormenta eléctrica que el cuerpo no puede controlar.</p>
+<!-- ===== TOPIC 1: BOSTEZOS ===== -->
+<section class="topic bg-white">
+    <div class="topic-image">
+        <img src="img/ducreux-yawn.jpg" alt="El que bosteza — Joseph Ducreux, c. 1783" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Joseph Ducreux</span> · <em>Le Bâilleur</em> (El que bosteza), c. 1783<br>
+            Óleo sobre lienzo. Ducreux rompió con la tradición del retrato formal pintándose a sí mismo bostezando — un gesto cotidiano elevado a arte. El único autorretrato del siglo XVIII que captura algo tan humano.
+        </div>
     </div>
-
-    <div class="card fade-in">
-        <div class="card-emoji">😴</div>
-        <div class="card-tag">Sueño</div>
-        <h3>Duerme</h3>
-        <div class="question">¿Qué sucede cuando duermo?</div>
-        <p>Mientras estamos despiertos, el cerebro activa neurotransmisores que nos mantienen alertas. Al dormir, <strong style="color:var(--text);">el cerebro no se apaga — cambia de modo</strong>. Consolida memorias, limpia desechos metabólicos (sistema glinfático), repara conexiones sinápticas, y procesa emociones. Dormir mal no es solo cansancio — es sabotear tu hardware.</p>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Termorregulación</div>
+        <h2 class="reveal reveal-delay-1">Bostezando</h2>
+        <p class="topic-question reveal reveal-delay-2">¿Qué significa realmente un bostezo?</p>
+        <p class="topic-body reveal reveal-delay-2">Según un estudio de Gary Hack (Universidad de Maryland), cuando bostezamos estamos <strong>enfriando nuestro cerebro</strong>. El bostezo aumenta el flujo de sangre fría hacia el cerebro y expulsa la sangre caliente.</p>
+        <div class="topic-detail reveal reveal-delay-3">No es aburrimiento — es termorregulación. Tu cerebro funciona mejor a cierta temperatura, y el bostezo es su mecanismo de enfriamiento natural. Por eso bostezamos más cuando hace calor o estamos cansados.</div>
     </div>
+</section>
 
-    <div class="card fade-in">
-        <div class="card-emoji">🎯</div>
-        <div class="card-tag">Dopamina</div>
-        <h3>Aprendiendo placer</h3>
-        <div class="question">¿Te emociona aprender algo nuevo?</div>
-        <p>Cuando aprendes algo retador pero alcanzable, tu cerebro activa el <strong style="color:var(--text);">sistema de recompensa</strong>: aumenta la dopamina, refuerza conexiones sinápticas y sientes motivación por seguir. Esa chispa que sientes al lograrlo no es casualidad — es neurociencia en acción. Por eso los videojuegos son adictivos: dificultad progresiva = dopamina constante.</p>
+<!-- ===== TOPIC 2: EPILEPSIA ===== -->
+<section class="topic bg-cream">
+    <div class="topic-image">
+        <img src="img/vangogh-starrynight.jpg" alt="La Noche Estrellada — Vincent van Gogh, 1889" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Vincent van Gogh</span> · <em>De sterrennacht</em> (La Noche Estrellada), 1889<br>
+            Óleo sobre lienzo. Pintada desde el manicomio de Saint-Rémy-de-Provence, donde Van Gogh fue internado tras episodios de convulsiones. Los remolinos del cielo podrían reflejar su experiencia neurológica — una tormenta visual hecha arte.
+        </div>
     </div>
-
-    <div class="card fade-in">
-        <div class="card-emoji">💭</div>
-        <div class="card-tag">Memoria</div>
-        <h3>Modificando recuerdos</h3>
-        <div class="question">¿Se pueden reescribir los recuerdos?</div>
-        <p>Al recordar algo, ese recuerdo se vuelve <strong style="color:var(--text);">maleable por unos minutos</strong>: es el proceso de reconsolidación. Si en ese lapso incorporas nueva información emocional o factual, el recuerdo puede actualizarse — volverse menos intenso o más preciso. Cada vez que recuerdas algo, lo estás editando un poco. Tu memoria no es un disco duro — es un documento vivo.</p>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Actividad neuronal</div>
+        <h2 class="reveal reveal-delay-1">Epilepsia</h2>
+        <p class="topic-question reveal reveal-delay-2">¿Qué sucede durante una convulsión?</p>
+        <p class="topic-body reveal reveal-delay-2">Las convulsiones se producen por un <strong>patrón anormal de actividad neuronal</strong>. Imagina que todas las neuronas de una zona del cerebro se disparan al mismo tiempo, como si una orquesta tocara todas las notas a la vez.</p>
+        <div class="topic-detail reveal reveal-delay-3">El resultado es una tormenta eléctrica que el cuerpo no puede controlar. Van Gogh probablemente la experimentó — y quizá la pintó sin saberlo en esos cielos turbulentos.</div>
     </div>
+</section>
 
-    <div class="card fade-in">
-        <div class="card-emoji">📜</div>
-        <div class="card-tag">Historia</div>
-        <h3>Historia de la Neurociencia</h3>
-        <div class="question">De los inicios a la actualidad</div>
-        <p>Desde las trepanaciones prehistóricas hasta la resonancia magnética funcional, la neurociencia ha evolucionado a través de siglos de curiosidad, experimentos audaces y descubrimientos que transformaron nuestra comprensión del cerebro. De "el corazón es la sede del alma" a mapear 86 mil millones de neuronas.</p>
+<!-- ===== TOPIC 3: SUEÑO ===== -->
+<section class="topic bg-white">
+    <div class="topic-image">
+        <img src="img/rousseau-gypsy.jpg" alt="La Gitana Dormida — Henri Rousseau, 1897" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Henri Rousseau</span> · <em>La Bohémienne endormie</em> (La Gitana Dormida), 1897<br>
+            Óleo sobre lienzo. Una mujer duerme profundamente en el desierto mientras un león la olfatea sin despertarla. La pintura captura ese estado liminal entre la consciencia y el sueño — donde el cuerpo descansa pero el cerebro no se detiene.
+        </div>
     </div>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Sueño</div>
+        <h2 class="reveal reveal-delay-1">Duerme</h2>
+        <p class="topic-question reveal reveal-delay-2">¿Qué sucede cuando duermo?</p>
+        <p class="topic-body reveal reveal-delay-2">Mientras estamos despiertos, el cerebro activa neurotransmisores que nos mantienen alertas. Al dormir, <strong>el cerebro no se apaga — cambia de modo</strong>. Consolida memorias, limpia desechos metabólicos a través del sistema glinfático, repara conexiones sinápticas y procesa emociones.</p>
+        <div class="topic-detail reveal reveal-delay-3">Dormir mal no es solo cansancio — es sabotear tu hardware. El sistema glinfático (descubierto apenas en 2012) elimina proteínas tóxicas como la beta-amiloide, asociada al Alzheimer. Literalmente, tu cerebro se lava mientras duermes.</div>
+    </div>
+</section>
 
-</div>
+<!-- ===== TOPIC 4: DOPAMINA ===== -->
+<section class="topic bg-purple">
+    <div class="topic-image">
+        <img src="img/klimt-kiss.jpg" alt="El Beso — Gustav Klimt, 1907-1908" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Gustav Klimt</span> · <em>Der Kuss</em> (El Beso), 1907–1908<br>
+            Óleo y pan de oro sobre lienzo. El momento cumbre del placer y la conexión humana, envuelto en oro. Klimt capturó la esencia de la dopamina sin saberlo: ese instante de recompensa donde el cerebro dice "esto es lo que quiero, repítelo."
+        </div>
+    </div>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Dopamina</div>
+        <h2 class="reveal reveal-delay-1">Aprendiendo placer</h2>
+        <p class="topic-question reveal reveal-delay-2">¿Te emociona aprender algo nuevo?</p>
+        <p class="topic-body reveal reveal-delay-2">Cuando aprendes algo retador pero alcanzable, tu cerebro activa el <strong>sistema de recompensa</strong>: aumenta la dopamina, refuerza conexiones sinápticas y sientes motivación por seguir. Esa chispa que sientes al lograrlo no es casualidad — es neurociencia en acción.</p>
+        <div class="topic-detail reveal reveal-delay-3">Por eso los videojuegos son adictivos: dificultad progresiva = dopamina constante. Y por eso aprender algo nuevo se siente tan bien. Tu cerebro está diseñado para recompensarte por crecer.</div>
+    </div>
+</section>
 
-<!-- FOOTER -->
+<!-- ===== TOPIC 5: MEMORIA ===== -->
+<section class="topic bg-warm">
+    <div class="topic-image">
+        <img src="img/dali-memory.jpg" alt="La persistencia de la memoria — Salvador Dalí, 1931" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Salvador Dalí</span> · <em>La persistència de la memòria</em>, 1931<br>
+            Óleo sobre lienzo. Los relojes blandos de Dalí no son solo surrealismo — son una metáfora perfecta de cómo funciona la memoria: maleable, deformable, nunca fija. Cada vez que recuerdas algo, lo estás derritiendo y reformando.
+        </div>
+    </div>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Memoria</div>
+        <h2 class="reveal reveal-delay-1">Modificando recuerdos</h2>
+        <p class="topic-question reveal reveal-delay-2">¿Se pueden reescribir los recuerdos?</p>
+        <p class="topic-body reveal reveal-delay-2">Al recordar algo, ese recuerdo se vuelve <strong>maleable por unos minutos</strong>: es el proceso de reconsolidación. Si en ese lapso incorporas nueva información emocional o factual, el recuerdo puede actualizarse — volverse menos intenso o más preciso.</p>
+        <div class="topic-detail reveal reveal-delay-3">Cada vez que recuerdas algo, lo estás editando un poco. Tu memoria no es un disco duro — es un documento vivo. Esto tiene aplicaciones terapéuticas reales: la terapia de reconsolidación ayuda a tratar el TEPT reactivando y "reescribiendo" recuerdos traumáticos.</div>
+    </div>
+</section>
+
+<!-- ===== TOPIC 6: HISTORIA ===== -->
+<section class="topic bg-cream">
+    <div class="topic-image">
+        <img src="img/rembrandt-anatomy.jpg" alt="Lección de anatomía del Dr. Nicolaes Tulp — Rembrandt, 1632" class="reveal">
+        <div class="painting-info">
+            <span class="artist">Rembrandt van Rijn</span> · <em>De Anatomische les van Dr. Nicolaes Tulp</em>, 1632<br>
+            Óleo sobre lienzo. Una disección pública en Ámsterdam: el Dr. Tulp expone los tendones del brazo ante cirujanos fascinados. Es el nacimiento de la anatomía moderna como espectáculo y ciencia — la misma curiosidad que eventualmente nos llevó al cerebro.
+        </div>
+    </div>
+    <div class="topic-text">
+        <div class="topic-tag reveal">Historia</div>
+        <h2 class="reveal reveal-delay-1">Historia de la Neurociencia</h2>
+        <p class="topic-question reveal reveal-delay-2">De los inicios a la actualidad</p>
+        <p class="topic-body reveal reveal-delay-2">Desde las trepanaciones prehistóricas hasta la resonancia magnética funcional, la neurociencia ha evolucionado a través de siglos de curiosidad, experimentos audaces y descubrimientos que transformaron nuestra comprensión del cerebro.</p>
+        <div class="topic-detail reveal reveal-delay-3">De "el corazón es la sede del alma" (Aristóteles) a mapear 86 mil millones de neuronas. Hipócrates fue el primero en decir que el cerebro era el órgano del pensamiento. Galeno lo confirmó con disecciones. Cajal lo dibujó. Y nosotros seguimos descifrándolo.</div>
+    </div>
+</section>
+
+<!-- ===== CAJAL TRIBUTE ===== -->
+<section class="cajal-tribute">
+    <div class="inner">
+        <div class="topic-tag reveal" style="text-align:center;">El artista de las neuronas</div>
+        <h2 class="reveal reveal-delay-1">Santiago Ramón y Cajal</h2>
+        <p class="reveal reveal-delay-2">Nobel de Medicina 1906. Dibujaba neuronas a mano con una precisión que las máquinas tardaron un siglo en igualar. Demostró que el sistema nervioso no era una red continua, sino millones de células individuales comunicándose entre sí.</p>
+        <p class="reveal reveal-delay-2" style="font-style:italic; color:var(--gold);">"Todo ser humano, si se lo propone, puede ser escultor de su propio cerebro."</p>
+        <div class="cajal-gallery reveal reveal-delay-3">
+            <img src="img/cajal-retina.jpg" alt="Cajal — Dibujo de la retina">
+            <img src="img/cajal-purkinje.jpg" alt="Cajal — Neurona de Purkinje del cerebelo humano">
+            <img src="img/cajal-brain.jpg" alt="Cajal — Células nerviosas del cerebro">
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
-    <p><strong>Cerebro Cotidiano</strong> — Neurociencia en la vida diaria</p>
-    <p>por <strong>Pame Ruiz</strong> · <a href="https://instagram.com/pamer.raw">@pamer.raw</a></p>
-    <p style="margin-top:1rem; font-size:0.75rem;">Parte de los proyectos de <a href="https://pamela-ruiz9.github.io">pamela-ruiz9.github.io</a></p>
+    <p class="title">Cerebro Cotidiano 🧠</p>
+    <p>Neurociencia en la vida diaria · por <strong>Pame Ruiz</strong></p>
+    <p><a href="https://instagram.com/pamer.raw">@pamer.raw</a></p>
+    <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--text-muted);">
+        Parte de <a href="https://pamela-ruiz9.github.io">pamela-ruiz9.github.io</a><br>
+        Las obras de arte son de dominio público o uso educativo.
+    </p>
 </footer>
 
 <script>
-// Fade in
+// Intersection Observer for reveal animations
 const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-// Theme
-function toggleTheme() {
-    const html = document.documentElement;
-    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    document.querySelector('.theme-toggle').textContent = next === 'light' ? '🌙' : '☀️';
-}
-(function() {
-    const saved = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', saved);
-    setTimeout(() => { const btn = document.querySelector('.theme-toggle'); if(btn) btn.textContent = saved === 'light' ? '🌙' : '☀️'; }, 0);
-})();
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
