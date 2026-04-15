@@ -1165,56 +1165,9 @@
         }
 
         /* ===== SHARE BUTTON ===== */
-        .card-share-btn {
-            position: absolute;
-            top: 1.2rem;
-            right: 5.8rem;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--purple-wash);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease);
-            z-index: 5;
-            font-size: 1rem;
-            line-height: 1;
-        }
 
-        .card-share-btn:hover {
-            background: var(--purple-glow);
-            transform: scale(1.1);
-        }
 
-        .card-share-btn .share-tooltip {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 6px;
-            background: var(--text);
-            color: white;
-            font-family: var(--sans);
-            font-size: 0.68rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-        }
 
-        .card-share-btn:hover .share-tooltip {
-            opacity: 1;
-        }
-
-        .share-generating {
-            pointer-events: none;
-            opacity: 0.6;
-        }
 
         /* ===== SOBRE SECTION ===== */
         .sobre-section {
@@ -1302,12 +1255,6 @@
         }
 
         @media (max-width: 768px) {
-            .card-share-btn {
-                width: 32px;
-                height: 32px;
-                right: 5rem;
-                font-size: 0.9rem;
-            }
             .sobre-section {
                 padding: 3.5rem 1.5rem;
             }
@@ -1560,7 +1507,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1730,7 +1676,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1787,7 +1732,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1838,7 +1782,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1889,7 +1832,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1946,7 +1888,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1997,7 +1938,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2048,7 +1988,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2105,7 +2044,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2156,7 +2094,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2207,7 +2144,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2264,7 +2200,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2315,7 +2250,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2366,7 +2300,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2423,7 +2356,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2474,7 +2406,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2525,7 +2456,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2582,7 +2512,6 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2802,15 +2731,6 @@ const sectionObserver = new IntersectionObserver(entries => {
 sections.forEach(s => sectionObserver.observe(s));
 
 // ===== Timeline IntersectionObserver =====
-// ===== References toggle =====
-document.addEventListener('click', (e) => {
-    const toggle = e.target.closest('.card-references-toggle');
-    if (toggle) {
-        const refs = toggle.parentElement;
-        refs.classList.toggle('open');
-    }
-});
-
 function initTimelineObserver() {
     const timeline = document.getElementById('neuro-timeline');
     if (!timeline) return;
@@ -3065,154 +2985,7 @@ function initTimelineObserver() {
         return lines.length;
     }
 
-    function generateShareImage(card) {
-        var btn = card.querySelector('.card-share-btn');
-        if (btn) btn.classList.add('share-generating');
-
-        var canvas = document.createElement('canvas');
-        canvas.width = 1080;
-        canvas.height = 1080;
-        var ctx = canvas.getContext('2d');
-
-        // Background gradient
-        var grad = ctx.createLinearGradient(0, 0, 0, 1080);
-        grad.addColorStop(0, '#faf6f0');
-        grad.addColorStop(1, '#f0e8dc');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, 1080, 1080);
-
-        // Get card data
-        var expandedText = card.querySelector('.card-expanded-text');
-        var expandedImage = card.querySelector('.card-expanded-image');
-        var tag = (expandedText.querySelector('.card-tag') || {}).textContent || '';
-        var title = (expandedText.querySelector('.card-title') || {}).textContent || '';
-        var question = (expandedText.querySelector('.card-question') || {}).textContent || '';
-        var bodyEl = expandedText.querySelector('.card-body');
-        var strongEl = bodyEl ? bodyEl.querySelector('strong') : null;
-        var keyFact = strongEl ? strongEl.textContent : '';
-        var imgEl = expandedImage ? expandedImage.querySelector('img') : null;
-
-        function drawTextSection() {
-            var textY = 680;
-            var padding = 70;
-            var maxW = 1080 - (padding * 2);
-
-            // Category tag
-            ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
-            ctx.fillStyle = '#7b68ee';
-            ctx.textAlign = 'left';
-            ctx.fillText(tag.toUpperCase(), padding, textY);
-            textY += 36;
-
-            // Title
-            ctx.font = 'bold 42px Georgia, serif';
-            ctx.fillStyle = '#2a2420';
-            var titleLines = wrapText(ctx, title, padding, textY, maxW, 50);
-            textY += titleLines * 50 + 12;
-
-            // Question
-            ctx.font = 'italic 30px Georgia, serif';
-            ctx.fillStyle = '#c4a35a';
-            var qLines = wrapText(ctx, question, padding, textY, maxW, 38);
-            textY += qLines * 38 + 16;
-
-            // Key fact
-            if (keyFact) {
-                ctx.font = '26px system-ui, -apple-system, sans-serif';
-                ctx.fillStyle = '#5a524a';
-                var factLines = wrapText(ctx, keyFact, padding, textY, maxW, 34);
-                textY += factLines * 34 + 20;
-            }
-
-            // Divider
-            ctx.beginPath();
-            ctx.moveTo(padding, textY);
-            ctx.lineTo(1080 - padding, textY);
-            ctx.strokeStyle = 'rgba(123,104,238,0.25)';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            textY += 28;
-
-            // Branding
-            ctx.font = 'bold 24px Georgia, serif';
-            ctx.fillStyle = '#2a2420';
-            ctx.textAlign = 'center';
-            ctx.fillText('Cerebro Cotidiano \uD83E\uDDE0', 540, textY);
-            textY += 28;
-
-            ctx.font = '18px system-ui, -apple-system, sans-serif';
-            ctx.fillStyle = '#8a8078';
-            ctx.fillText('por Pame Ruiz', 540, textY);
-            textY += 26;
-
-            ctx.font = '16px system-ui, -apple-system, sans-serif';
-            ctx.fillStyle = '#8a8078';
-            ctx.fillText('pamela-ruiz9.github.io/cerebro-cotidiano', 540, textY);
-        }
-
-        function triggerDownload() {
-            try {
-                var link = document.createElement('a');
-                link.download = 'cerebro-cotidiano-' + (card.dataset.card || 'tema') + '.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            } catch(e) {
-                alert('No se pudo generar la imagen');
-            }
-            if (btn) btn.classList.remove('share-generating');
-        }
-
-        if (imgEl && imgEl.src) {
-            var img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.onload = function() {
-                // Draw image centered in top ~60%
-                var imgAreaH = 630;
-                var imgPad = 60;
-                var maxImgW = 1080 - (imgPad * 2);
-                var maxImgH = imgAreaH - (imgPad * 2);
-
-                var scale = Math.min(maxImgW / img.width, maxImgH / img.height);
-                var drawW = img.width * scale;
-                var drawH = img.height * scale;
-                var drawX = (1080 - drawW) / 2;
-                var drawY = imgPad + (maxImgH - drawH) / 2;
-
-                // Shadow
-                ctx.save();
-                ctx.shadowColor = 'rgba(0,0,0,0.15)';
-                ctx.shadowBlur = 30;
-                ctx.shadowOffsetX = 0;
-                ctx.shadowOffsetY = 8;
-                ctx.drawImage(img, drawX, drawY, drawW, drawH);
-                ctx.restore();
-
-                drawTextSection();
-                triggerDownload();
-            };
-            img.onerror = function() {
-                // Draw without image
-                drawTextSection();
-                triggerDownload();
-            };
-            img.src = imgEl.src;
-        } else {
-            drawTextSection();
-            triggerDownload();
-        }
-    }
-
-    // Attach click to all share buttons
-    document.querySelectorAll('.card-share-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var card = btn.closest('.topic-card');
-            if (card) generateShareImage(card);
-        });
-    });
-})();
-
-// ===== FEATURE 5: COLLAPSIBLE REFERENCES =====
+// ===== COLLAPSIBLE REFERENCES =====
 (function() {
     document.addEventListener('click', function(e) {
         var toggle = e.target.closest('.card-references-toggle');
