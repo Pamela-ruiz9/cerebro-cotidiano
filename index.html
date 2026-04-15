@@ -570,6 +570,63 @@
             fill: none;
         }
 
+        /* ===== CARD NAV ARROWS ===== */
+        .card-nav-arrows {
+            position: absolute;
+            bottom: 1.2rem;
+            right: 1.2rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 5;
+        }
+
+        .card-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--purple-wash);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease);
+        }
+
+        .card-nav-btn:hover {
+            background: var(--purple-glow);
+            transform: scale(1.1);
+        }
+
+        .card-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            transform: none;
+        }
+
+        .card-nav-btn:disabled:hover {
+            background: var(--purple-wash);
+        }
+
+        .card-nav-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--purple);
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .card-nav-arrows {
+                bottom: 0.8rem;
+                right: 0.8rem;
+            }
+            .card-nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
         /* ===== CAJAL SECTION ===== */
         .cajal-tribute {
             padding: 6rem 2rem;
@@ -2959,6 +3016,60 @@ function initTimelineObserver() {
             e.stopPropagation();
         }
     });
+})();
+
+// ===== CARD NAVIGATION ARROWS =====
+(function() {
+    const allCards = Array.from(document.querySelectorAll('.topic-card'));
+
+    // Inject nav arrows into each expanded section
+    allCards.forEach(card => {
+        const expanded = card.querySelector('.card-expanded');
+        if (!expanded) return;
+
+        const navDiv = document.createElement('div');
+        navDiv.className = 'card-nav-arrows';
+        navDiv.innerHTML = '<button class="card-nav-btn card-nav-prev" aria-label="Anterior"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button class="card-nav-btn card-nav-next" aria-label="Siguiente"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>';
+        expanded.appendChild(navDiv);
+
+        navDiv.querySelector('.card-nav-prev').addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateCard(card, -1);
+        });
+        navDiv.querySelector('.card-nav-next').addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateCard(card, 1);
+        });
+    });
+
+    function getVisibleCards() {
+        return allCards.filter(c => !c.classList.contains('filter-hidden'));
+    }
+
+    function navigateCard(current, direction) {
+        const visible = getVisibleCards();
+        const idx = visible.indexOf(current);
+        const next = visible[idx + direction];
+        if (!next) return;
+        expandCard(next);
+    }
+
+    // Update arrow disabled state when a card expands
+    const origExpandCard = expandCard;
+    // We can't override easily, so use a MutationObserver
+    const obs = new MutationObserver(function() {
+        const visible = getVisibleCards();
+        allCards.forEach(card => {
+            if (!card.classList.contains('expanded')) return;
+            const idx = visible.indexOf(card);
+            const prev = card.querySelector('.card-nav-prev');
+            const next = card.querySelector('.card-nav-next');
+            if (prev) prev.disabled = (idx <= 0);
+            if (next) next.disabled = (idx >= visible.length - 1);
+        });
+    });
+    const grid = document.querySelector('.cards-grid');
+    if (grid) obs.observe(grid, { attributes: true, subtree: true, attributeFilter: ['class'] });
 })();
 
 // ===== COLLAPSIBLE REFERENCES =====
