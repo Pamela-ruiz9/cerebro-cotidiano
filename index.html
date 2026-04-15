@@ -1412,6 +1412,77 @@
                 font-size: 0.88rem;
             }
         }
+
+        /* ===== CARD REFERENCES ===== */
+        .card-references {
+            margin-top: 1.2rem;
+        }
+
+        .card-references-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: var(--purple);
+            font-weight: 600;
+            border: none;
+            background: none;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .card-references-toggle:hover {
+            color: var(--purple-soft);
+        }
+
+        .card-references-toggle .ref-arrow {
+            display: inline-block;
+            transition: transform 0.3s var(--ease-smooth);
+            font-size: 0.7rem;
+        }
+
+        .card-references.open .ref-arrow {
+            transform: rotate(90deg);
+        }
+
+        .card-references-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--ease-smooth), opacity 0.3s;
+            opacity: 0;
+        }
+
+        .card-references.open .card-references-list {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        .card-references-list ul {
+            list-style: none;
+            padding: 0.5rem 0 0 0;
+        }
+
+        .card-references-list li {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .card-references-list li:last-child {
+            border-bottom: none;
+        }
+
+        .card-references-list a {
+            color: var(--purple);
+            text-decoration: none;
+        }
+
+        .card-references-list a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -1623,6 +1694,16 @@
                                 <div class="timeline-dot"></div>
                             </div>
                         </div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Finger, S. (2001). <em>Origins of Neuroscience</em>. Oxford University Press.</li>
+                                    <li>Gross, C.G. (1998). "Galen and the Squealing Pig." <em>The Neuroscientist</em>, 4(3), 216-221.</li>
+                                    <li>Ramón y Cajal, S. (1899). <em>Textura del sistema nervioso del hombre y de los vertebrados</em>.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1665,6 +1746,15 @@
                         <p class="card-question">¿Qué significa realmente un bostezo?</p>
                         <p class="card-body">Según un estudio de Gary Hack (Universidad de Maryland), cuando bostezamos estamos <strong>enfriando nuestro cerebro</strong>. El bostezo aumenta el flujo de sangre fría hacia el cerebro y expulsa la sangre caliente.</p>
                         <div class="card-detail">No es aburrimiento — es termorregulación. Tu cerebro funciona mejor a cierta temperatura, y el bostezo es su mecanismo de enfriamiento natural. Por eso bostezamos más cuando hace calor o estamos cansados.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Gallup, A.C. & Gallup, G.G. (2007). "Yawning as a Brain Cooling Mechanism." <em>Evolutionary Psychology</em>, 5(1). <a href="https://doi.org/10.1177/147470490700500109" target="_blank" rel="noopener">doi:10.1177/147470490700500109</a></li>
+                                    <li>Hack, G.D. et al. (2012). "The Physiological Basis of Yawning." <em>Medical Hypotheses</em>, 78(1), 42-45.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1713,6 +1803,15 @@
                         <p class="card-question">¿Qué sucede durante una convulsión?</p>
                         <p class="card-body">Las convulsiones se producen por un <strong>patrón anormal de actividad neuronal</strong>. Imagina que todas las neuronas de una zona del cerebro se disparan al mismo tiempo, como si una orquesta tocara todas las notas a la vez.</p>
                         <div class="card-detail">El resultado es una tormenta eléctrica que el cuerpo no puede controlar. Van Gogh probablemente la experimentó — y quizá la pintó sin saberlo en esos cielos turbulentos.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Fisher, R.S. et al. (2014). "ILAE Official Report: A practical clinical definition of epilepsy." <em>Epilepsia</em>, 55(4), 475-482. <a href="https://doi.org/10.1111/epi.12550" target="_blank" rel="noopener">doi:10.1111/epi.12550</a></li>
+                                    <li>Blumer, D. (2002). "The Illness of Vincent van Gogh." <em>American Journal of Psychiatry</em>, 159(4), 519-526.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1755,6 +1854,15 @@
                         <p class="card-question">¿Qué sucede cuando duermo?</p>
                         <p class="card-body">Mientras estamos despiertos, el cerebro activa neurotransmisores que nos mantienen alertas. Al dormir, <strong>el cerebro no se apaga — cambia de modo</strong>. Consolida memorias, limpia desechos metabólicos a través del sistema glinfático, repara conexiones sinápticas y procesa emociones.</p>
                         <div class="card-detail">Dormir mal no es solo cansancio — es sabotear tu hardware. El sistema glinfático (descubierto apenas en 2012) elimina proteínas tóxicas como la beta-amiloide, asociada al Alzheimer. Literalmente, tu cerebro se lava mientras duermes.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Xie, L. et al. (2013). "Sleep Drives Metabolite Clearance from the Adult Brain." <em>Science</em>, 342(6156), 373-377. <a href="https://doi.org/10.1126/science.1241224" target="_blank" rel="noopener">doi:10.1126/science.1241224</a></li>
+                                    <li>Walker, M. (2017). <em>Why We Sleep</em>. Scribner.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1797,6 +1905,15 @@
                         <p class="card-question">¿Te emociona aprender algo nuevo?</p>
                         <p class="card-body">Cuando aprendes algo retador pero alcanzable, tu cerebro activa el <strong>sistema de recompensa</strong>: aumenta la dopamina, refuerza conexiones sinápticas y sientes motivación por seguir. Esa chispa que sientes al lograrlo no es casualidad — es neurociencia en acción.</p>
                         <div class="card-detail">Por eso los videojuegos son adictivos: dificultad progresiva = dopamina constante. Y por eso aprender algo nuevo se siente tan bien. Tu cerebro está diseñado para recompensarte por crecer.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Schultz, W. (1998). "Predictive Reward Signal of Dopamine Neurons." <em>Journal of Neurophysiology</em>, 80(1), 1-27.</li>
+                                    <li>Berridge, K.C. & Robinson, T.E. (1998). "What is the role of dopamine in reward?" <em>Brain Research Reviews</em>, 28(3), 309-369.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1845,6 +1962,15 @@
                         <p class="card-question">¿Se pueden reescribir los recuerdos?</p>
                         <p class="card-body">Al recordar algo, ese recuerdo se vuelve <strong>maleable por unos minutos</strong>: es el proceso de reconsolidación. Si en ese lapso incorporas nueva información emocional o factual, el recuerdo puede actualizarse — volverse menos intenso o más preciso.</p>
                         <div class="card-detail">Cada vez que recuerdas algo, lo estás editando un poco. Tu memoria no es un disco duro — es un documento vivo. Esto tiene aplicaciones terapéuticas reales: la terapia de reconsolidación ayuda a tratar el TEPT reactivando y "reescribiendo" recuerdos traumáticos.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Nader, K. et al. (2000). "Fear memories require protein synthesis in the amygdala for reconsolidation." <em>Nature</em>, 406, 722-726. <a href="https://doi.org/10.1038/35021052" target="_blank" rel="noopener">doi:10.1038/35021052</a></li>
+                                    <li>Schiller, D. et al. (2010). "Preventing the return of fear in humans using reconsolidation update mechanisms." <em>Nature</em>, 463, 49-53.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1887,6 +2013,15 @@
                         <p class="card-question">¿Y si tu cerebro te miente todo el tiempo?</p>
                         <p class="card-body">Tu cerebro no percibe la realidad — la <strong>construye</strong>. Lo que ves es una interpretación, no una copia fiel del mundo. El cerebro rellena huecos, inventa bordes, corrige colores y asume formas basándose en experiencia previa, no en lo que realmente hay frente a ti.</p>
                         <div class="card-detail">El área fusiforme de caras (FFA) está tan especializada en reconocer rostros que los encuentra donde no existen: enchufes, nubes, tostadas. Este fenómeno se llama pareidolia y demuestra que tu cerebro prioriza la velocidad sobre la precisión — es mejor ver un rostro falso que ignorar uno real.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Gregory, R.L. (1997). "Knowledge in perception and illusion." <em>Philosophical Transactions of the Royal Society B</em>, 352(1358), 1121-1127.</li>
+                                    <li>Kanwisher, N. et al. (1997). "The Fusiform Face Area." <em>Journal of Neuroscience</em>, 17(11), 4302-4311.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1929,6 +2064,15 @@
                         <p class="card-question">¿Por qué una canción se te queda pegada?</p>
                         <p class="card-body">La música activa <strong>más regiones cerebrales simultáneamente</strong> que cualquier otra actividad humana: corteza auditiva, motora, prefrontal, límbica y cerebelo trabajan en conjunto. Los "gusanos auditivos" (earworms) ocurren porque la corteza auditiva repite patrones melódicos involuntariamente, como un loop neuronal atascado.</p>
                         <div class="card-detail">Un estudio de Blood y Zatorre (2001) demostró que la música que nos da escalofríos activa el nucleus accumbens — la misma zona que responde a la comida, el sexo y las drogas. Tu cerebro literalmente se "droga" con tu canción favorita. Y los músicos profesionales tienen un cuerpo calloso más grueso, lo que mejora la comunicación entre hemisferios.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Blood, A.J. & Zatorre, R.J. (2001). "Intensely pleasurable responses to music correlate with activity in brain regions implicated in reward and emotion." <em>PNAS</em>, 98(20), 11818-11823.</li>
+                                    <li>Levitin, D.J. (2006). <em>This Is Your Brain on Music</em>. Dutton.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1977,6 +2121,15 @@
                         <p class="card-question">¿El amor es una decisión o una reacción química?</p>
                         <p class="card-body">Enamorarse es un <strong>cóctel neuroquímico</strong>: la dopamina genera euforia, la norepinefrina acelera el corazón y la serotonina baja a niveles similares al trastorno obsesivo-compulsivo — por eso no puedes dejar de pensar en esa persona. La oxitocina, liberada con el contacto físico, crea el vínculo de apego.</p>
                         <div class="card-detail">La antropóloga Helen Fisher escaneó cerebros de personas enamoradas y descubrió que el amor romántico activa el área tegmental ventral (VTA), la misma región que responde a la cocaína. Literalmente, estar enamorado es una forma de adicción. Y cuando te rompen el corazón, las mismas áreas del dolor físico se activan — por eso duele de verdad.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Fisher, H.E. et al. (2005). "Romantic love: a mammalian brain system for mate choice." <em>Philosophical Transactions of the Royal Society B</em>, 360(1458), 2173-2186.</li>
+                                    <li>Marazziti, D. et al. (1999). "Alteration of the platelet serotonin transporter in romantic love." <em>Psychological Medicine</em>, 29(3), 741-745.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2019,6 +2172,15 @@
                         <p class="card-question">¿Por qué no puedes pensar bajo presión?</p>
                         <p class="card-body">Bajo estrés, las glándulas suprarrenales liberan <strong>cortisol</strong>, que literalmente apaga la corteza prefrontal — tu centro de pensamiento racional — y activa la amígdala, el sistema de alarma primitivo. Es la respuesta de <strong>lucha o huida</strong>: tu cerebro decide que sobrevivir es más importante que pensar.</p>
                         <div class="card-detail">El estrés crónico encoge el hipocampo (memoria) y agranda la amígdala (miedo). Un estudio de la Universidad de Yale (2012) demostró que personas con estrés prolongado tenían menor volumen de materia gris prefrontal. El estrés no solo te hace sentir mal — literalmente te hace menos inteligente con el tiempo.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>McEwen, B.S. (2007). "Physiology and Neurobiology of Stress and Adaptation." <em>Physiological Reviews</em>, 87(3), 873-904.</li>
+                                    <li>Arnsten, A.F.T. (2009). "Stress signalling pathways that impair prefrontal cortex structure and function." <em>Nature Reviews Neuroscience</em>, 10, 410-422.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2061,6 +2223,15 @@
                         <p class="card-question">¿Tu cerebro puede cambiar de forma?</p>
                         <p class="card-body">Tu cerebro se <strong>recablea todos los días</strong>. Cada vez que aprendes algo nuevo, practicas una habilidad o cambias un hábito, las conexiones sinápticas se fortalecen, debilitan o crean desde cero. El famoso estudio de Maguire (2000) demostró que los taxistas de Londres tienen un <strong>hipocampo más grande</strong> que el promedio — su cerebro creció literalmente por navegar calles complejas.</p>
                         <div class="card-detail">La neuroplasticidad no se detiene con la edad. Estudios demuestran que personas de 80 años pueden generar nuevas neuronas en el hipocampo (neurogénesis adulta). Lo que sí cambia es la velocidad: de niño tu cerebro es como plastilina; de adulto, más como arcilla — se puede moldear, pero requiere más esfuerzo y repetición.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Maguire, E.A. et al. (2000). "Navigation-related structural change in the hippocampi of taxi drivers." <em>PNAS</em>, 97(8), 4398-4403. <a href="https://doi.org/10.1073/pnas.070039597" target="_blank" rel="noopener">doi:10.1073/pnas.070039597</a></li>
+                                    <li>Doidge, N. (2007). <em>The Brain That Changes Itself</em>. Viking.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2109,6 +2280,15 @@
                         <p class="card-question">¿Por qué dices "solo un capítulo más"?</p>
                         <p class="card-body">Las adicciones <strong>secuestran el sistema de dopamina</strong>. Sustancias como la cocaína inundan el cerebro con hasta 10 veces más dopamina de lo normal, pero las adicciones modernas — el scroll infinito, las apuestas, las series — explotan el mismo mecanismo con <strong>recompensas variables</strong>: nunca sabes cuándo viene el siguiente estímulo placentero, así que no puedes parar.</p>
                         <div class="card-detail">Con el tiempo, el cerebro reduce sus receptores de dopamina (tolerancia): necesitas más estímulo para sentir lo mismo. Es por eso que la primera temporada siempre es la mejor, que necesitas más likes para sentirte bien, y que el segundo café no sabe igual. Tu cerebro se adapta al placer — y te deja queriendo más.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Volkow, N.D. et al. (2011). "Addiction: Beyond dopamine reward circuitry." <em>PNAS</em>, 108(37), 15037-15042.</li>
+                                    <li>Alter, A. (2017). <em>Irresistible: The Rise of Addictive Technology</em>. Penguin.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2151,6 +2331,15 @@
                         <p class="card-question">¿Por qué tienes la palabra "en la punta de la lengua"?</p>
                         <p class="card-body">El lenguaje depende de dos áreas principales: el <strong>área de Broca</strong> (producción del habla, en el lóbulo frontal) y el <strong>área de Wernicke</strong> (comprensión, en el lóbulo temporal). Si Broca se daña, entiendes todo pero no puedes hablar fluidamente; si Wernicke falla, hablas con fluidez pero sin sentido.</p>
                         <div class="card-detail">El fenómeno de "punta de la lengua" (tip-of-the-tongue) ocurre cuando la memoria semántica recupera el significado de una palabra pero falla la conexión con su forma fonológica. Sabes qué quieres decir, sabes que la sabes, incluso recuerdas con qué letra empieza — pero el camino neuronal entre significado y sonido se bloquea temporalmente. Le pasa a todo el mundo, más seguido con la edad.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Broca, P. (1861). "Remarques sur le siège de la faculté du langage articulé." <em>Bulletins de la Société Anatomique de Paris</em>, 6, 330-357.</li>
+                                    <li>Brown, R. & McNeill, D. (1966). "The 'tip of the tongue' phenomenon." <em>Journal of Verbal Learning and Verbal Behavior</em>, 5(4), 325-337.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2193,6 +2382,15 @@
                         <p class="card-question">¿El dolor está en el cuerpo o en la mente?</p>
                         <p class="card-body">El dolor no es una medición objetiva — es una <strong>opinión del cerebro</strong>. Los nociceptores envían señales de daño potencial, pero es el cerebro quien decide cuánto duele, basándose en contexto, emociones, expectativas y experiencias previas. Soldados heridos en batalla a veces no sienten dolor hasta horas después; personas con dolor crónico sienten agonía sin daño tisular.</p>
                         <div class="card-detail">El efecto placebo lo demuestra: una pastilla de azúcar puede reducir el dolor real porque el cerebro libera endorfinas al creer que el tratamiento funciona. Y el dolor del miembro fantasma — sentir dolor en una mano amputada — prueba definitivamente que el dolor se genera en el cerebro, no en el tejido. Tu cuerpo tiene sensores; tu cerebro tiene la última palabra.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Moseley, G.L. (2007). "Reconceptualising pain according to modern pain science." <em>Physical Therapy Reviews</em>, 12(3), 169-178.</li>
+                                    <li>Melzack, R. (1990). "Phantom limbs and the concept of a neuromatrix." <em>Trends in Neurosciences</em>, 13(3), 88-92.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2241,6 +2439,15 @@
                         <p class="card-question">¿Por qué reaccionas antes de pensar?</p>
                         <p class="card-body">La <strong>amígdala</strong> procesa las emociones antes de que la corteza prefrontal pueda "razonar" la situación. Joseph LeDoux descubrió que existe un atajo neuronal directo del tálamo a la amígdala — una vía rápida que te hace brincar ante una sombra <strong>antes de saber qué es</strong>. Evolutivamente, reaccionar rápido te mantiene vivo.</p>
                         <div class="card-detail">Este "secuestro amigdalar" (término de Daniel Goleman) explica por qué dices cosas de las que te arrepientes, por qué el miedo paraliza y por qué una cara enojada te activa antes de que puedas analizarla. La buena noticia: la corteza prefrontal puede aprender a modular la amígdala — eso es inteligencia emocional, y se entrena.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>LeDoux, J.E. (1996). <em>The Emotional Brain</em>. Simon & Schuster.</li>
+                                    <li>Goleman, D. (1995). <em>Emotional Intelligence</em>. Bantam Books.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2283,6 +2490,15 @@
                         <p class="card-question">¿Ya viviste este momento... o tu cerebro falló?</p>
                         <p class="card-body">El déjà vu es probablemente un <strong>error del hipocampo</strong>: la región que distingue entre recuerdos viejos y experiencias nuevas envía una señal de "familiar" a algo que es completamente nuevo. Es como un fallo de etiquetado — tu cerebro marca algo como "ya vivido" cuando en realidad lo está procesando por primera vez.</p>
                         <div class="card-detail">Ocurre más en personas jóvenes (cerebros más activos), cuando estás cansado o estresado, y es más común de lo que crees: el 60-70% de las personas lo experimentan. La teoría más aceptada (Cleary, 2008) sugiere que el déjà vu se activa cuando una escena nueva tiene una configuración espacial similar a un recuerdo que no puedes recuperar conscientemente. Tu cerebro reconoce el patrón, pero no la fuente.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Cleary, A.M. (2008). "Recognition memory, familiarity, and déjà vu experiences." <em>Current Directions in Psychological Science</em>, 17(5), 353-357.</li>
+                                    <li>Brown, A.S. (2003). "A Review of the Déjà Vu Experience." <em>Psychological Bulletin</em>, 129(3), 394-413.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2325,6 +2541,15 @@
                         <p class="card-question">¿De qué color suena un violín?</p>
                         <p class="card-body">La sinestesia es una condición neurológica en la que <strong>los sentidos se cruzan</strong>: algunas personas ven colores al escuchar música, otras saborean formas o sienten texturas al leer palabras. No es metáfora ni imaginación — es una conexión real entre áreas sensoriales del cerebro que en la mayoría de personas están separadas.</p>
                         <div class="card-detail">Afecta a aproximadamente 1 de cada 23 personas (Simner et al., 2006) y es más común en artistas y músicos. Los estudios de neuroimagen muestran que cuando un sinesteta "ve" un color al oír una nota, la corteza visual se activa de verdad — no es fantasía, es percepción genuina. Se cree que todos los bebés son sinestetas y que la "poda sináptica" normal separa los sentidos durante el desarrollo.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Simner, J. et al. (2006). "Synaesthesia: The prevalence of atypical cross-modal experiences." <em>Perception</em>, 35(8), 1024-1033.</li>
+                                    <li>Ramachandran, V.S. & Hubbard, E.M. (2001). "Synaesthesia — A Window Into Perception, Thought and Language." <em>Journal of Consciousness Studies</em>, 8(12), 3-34.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2373,6 +2598,15 @@
                         <p class="card-question">¿Por qué los adolescentes toman riesgos absurdos?</p>
                         <p class="card-body">El cerebro adolescente tiene el <strong>sistema límbico</strong> (emociones, recompensa) a toda máquina, pero la <strong>corteza prefrontal</strong> (juicio, control de impulsos, consecuencias) no termina de madurar hasta los 25 años. Es como tener un motor de Ferrari con frenos de bicicleta — sientes todo intensamente, pero no puedes regularlo.</p>
                         <div class="card-detail">Esto no es un defecto — es un diseño evolutivo. La adolescencia es el período para explorar, independizarse y tomar riesgos necesarios para la supervivencia. El problema es que el mundo moderno presenta riesgos que la evolución no anticipó: redes sociales, sustancias más potentes, velocidad. El estudio de Steinberg (2008) demostró que los adolescentes toman las mismas decisiones que los adultos cuando están solos, pero se vuelven mucho más impulsivos frente a sus pares — la presión social activa directamente el sistema de recompensa.</div>
+                        <div class="card-references">
+                            <button class="card-references-toggle"><span class="ref-arrow">▶</span> 📖 Fuentes</button>
+                            <div class="card-references-list">
+                                <ul>
+                                    <li>Steinberg, L. (2008). "A social neuroscience perspective on adolescent risk-taking." <em>Developmental Review</em>, 28(1), 78-106.</li>
+                                    <li>Casey, B.J. et al. (2008). "The Adolescent Brain." <em>Developmental Review</em>, 28(1), 62-77.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2568,6 +2802,15 @@ const sectionObserver = new IntersectionObserver(entries => {
 sections.forEach(s => sectionObserver.observe(s));
 
 // ===== Timeline IntersectionObserver =====
+// ===== References toggle =====
+document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.card-references-toggle');
+    if (toggle) {
+        const refs = toggle.parentElement;
+        refs.classList.toggle('open');
+    }
+});
+
 function initTimelineObserver() {
     const timeline = document.getElementById('neuro-timeline');
     if (!timeline) return;
@@ -2966,6 +3209,19 @@ function initTimelineObserver() {
             var card = btn.closest('.topic-card');
             if (card) generateShareImage(card);
         });
+    });
+})();
+
+// ===== FEATURE 5: COLLAPSIBLE REFERENCES =====
+(function() {
+    document.addEventListener('click', function(e) {
+        var toggle = e.target.closest('.card-references-toggle');
+        if (!toggle) return;
+        e.stopPropagation();
+        var refContainer = toggle.closest('.card-references');
+        if (refContainer) {
+            refContainer.classList.toggle('open');
+        }
     });
 })();
 </script>
