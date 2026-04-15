@@ -43,6 +43,92 @@
 
         ::selection { background: var(--purple); color: white; }
 
+        /* ===== NAV ===== */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250,246,240,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            padding: 0 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.4s var(--ease-smooth), border-color 0.3s;
+        }
+
+        .site-nav.visible {
+            transform: translateY(0);
+            border-bottom-color: var(--sand);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-logo em {
+            color: var(--purple);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.4rem 0.7rem;
+            border-radius: 6px;
+            transition: color 0.3s, background 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--purple);
+            background: var(--purple-wash);
+        }
+
+        @media (max-width: 768px) {
+            .site-nav { padding: 0 1rem; }
+            .nav-inner { height: 46px; }
+            .nav-links { gap: 0.1rem; }
+            .nav-links a {
+                font-size: 0.68rem;
+                padding: 0.35rem 0.5rem;
+                letter-spacing: 0.04em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo { font-size: 0.9rem; }
+            .nav-links a { font-size: 0.62rem; padding: 0.3rem 0.4rem; }
+        }
+
         /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
@@ -889,8 +975,20 @@
 </head>
 <body>
 
+<!-- ===== NAV ===== -->
+<nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Cerebro <em>Cotidiano</em></a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#temas">Temas</a></li>
+            <li><a href="#cajal">Cajal</a></li>
+        </ul>
+    </div>
+</nav>
+
 <!-- ===== HERO ===== -->
-<section class="hero">
+<section class="hero" id="inicio">
     <div class="hero-content">
         <div class="hero-tag reveal">Neurociencia · Arte · Vida diaria</div>
         <h1 class="reveal reveal-delay-1">Cerebro<br><em>Cotidiano</em></h1>
@@ -913,7 +1011,7 @@
 </section>
 
 <!-- ===== TOPICS GALLERY ===== -->
-<section class="topics-section">
+<section class="topics-section" id="temas">
     <div class="topics-header">
         <div class="topic-tag reveal">Galería</div>
         <h2 class="reveal reveal-delay-1">Explora los temas</h2>
@@ -922,7 +1020,7 @@
     <div class="cards-grid">
 
         <!-- CARD 1: HISTORIA -->
-        <article class="topic-card reveal" data-card="historia">
+        <article class="topic-card reveal" id="historia" data-card="historia">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1080,7 +1178,7 @@
         </article>
 
         <!-- CARD 2: BOSTEZOS -->
-        <article class="topic-card reveal reveal-delay-1" data-card="bostezos">
+        <article class="topic-card reveal reveal-delay-1" id="bostezos" data-card="bostezos">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1126,7 +1224,7 @@
         </div>
 
         <!-- CARD 3: EPILEPSIA -->
-        <article class="topic-card reveal reveal-delay-2" data-card="epilepsia">
+        <article class="topic-card reveal reveal-delay-2" id="epilepsia" data-card="epilepsia">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1166,7 +1264,7 @@
         </article>
 
         <!-- CARD 4: SUEÑO -->
-        <article class="topic-card reveal reveal-delay-3" data-card="sueno">
+        <article class="topic-card reveal reveal-delay-3" id="sueno" data-card="sueno">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1206,7 +1304,7 @@
         </article>
 
         <!-- CARD 5: DOPAMINA -->
-        <article class="topic-card reveal reveal-delay-4" data-card="dopamina">
+        <article class="topic-card reveal reveal-delay-4" id="dopamina" data-card="dopamina">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1252,7 +1350,7 @@
         </div>
 
         <!-- CARD 6: MEMORIA -->
-        <article class="topic-card reveal reveal-delay-5" data-card="memoria">
+        <article class="topic-card reveal reveal-delay-5" id="memoria" data-card="memoria">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1292,7 +1390,7 @@
         </article>
 
         <!-- CARD 7: ILUSIONES ÓPTICAS -->
-        <article class="topic-card reveal" data-card="ilusiones">
+        <article class="topic-card reveal" id="ilusiones" data-card="ilusiones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1332,7 +1430,7 @@
         </article>
 
         <!-- CARD 8: MÚSICA Y CEREBRO -->
-        <article class="topic-card reveal reveal-delay-1" data-card="musica">
+        <article class="topic-card reveal reveal-delay-1" id="musica" data-card="musica">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1378,7 +1476,7 @@
         </div>
 
         <!-- CARD 9: ENAMORAMIENTO -->
-        <article class="topic-card reveal reveal-delay-2" data-card="enamoramiento">
+        <article class="topic-card reveal reveal-delay-2" id="enamoramiento" data-card="enamoramiento">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1418,7 +1516,7 @@
         </article>
 
         <!-- CARD 10: ESTRÉS -->
-        <article class="topic-card reveal reveal-delay-3" data-card="estres">
+        <article class="topic-card reveal reveal-delay-3" id="estres" data-card="estres">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1458,7 +1556,7 @@
         </article>
 
         <!-- CARD 11: NEUROPLASTICIDAD -->
-        <article class="topic-card reveal reveal-delay-4" data-card="neuroplasticidad">
+        <article class="topic-card reveal reveal-delay-4" id="neuroplasticidad" data-card="neuroplasticidad">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1504,7 +1602,7 @@
         </div>
 
         <!-- CARD 12: ADICCIONES -->
-        <article class="topic-card reveal reveal-delay-5" data-card="adicciones">
+        <article class="topic-card reveal reveal-delay-5" id="adicciones" data-card="adicciones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1544,7 +1642,7 @@
         </article>
 
         <!-- CARD 13: LENGUAJE -->
-        <article class="topic-card reveal" data-card="lenguaje">
+        <article class="topic-card reveal" id="lenguaje" data-card="lenguaje">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1584,7 +1682,7 @@
         </article>
 
         <!-- CARD 14: DOLOR -->
-        <article class="topic-card reveal reveal-delay-1" data-card="dolor">
+        <article class="topic-card reveal reveal-delay-1" id="dolor" data-card="dolor">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1630,7 +1728,7 @@
         </div>
 
         <!-- CARD 15: EMOCIONES -->
-        <article class="topic-card reveal reveal-delay-2" data-card="emociones">
+        <article class="topic-card reveal reveal-delay-2" id="emociones" data-card="emociones">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1670,7 +1768,7 @@
         </article>
 
         <!-- CARD 16: DÉJÀ VU -->
-        <article class="topic-card reveal reveal-delay-3" data-card="dejavu">
+        <article class="topic-card reveal reveal-delay-3" id="dejavu" data-card="dejavu">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1710,7 +1808,7 @@
         </article>
 
         <!-- CARD 17: SINESTESIA -->
-        <article class="topic-card reveal reveal-delay-4" data-card="sinestesia">
+        <article class="topic-card reveal reveal-delay-4" id="sinestesia" data-card="sinestesia">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1756,7 +1854,7 @@
         </div>
 
         <!-- CARD 18: CEREBRO ADOLESCENTE -->
-        <article class="topic-card reveal reveal-delay-5" data-card="adolescente">
+        <article class="topic-card reveal reveal-delay-5" id="adolescente" data-card="adolescente">
             <!-- Collapsed -->
             <div class="card-collapsed">
                 <div class="card-thumb">
@@ -1801,7 +1899,7 @@
 </section>
 
 <!-- ===== CAJAL TRIBUTE ===== -->
-<section class="cajal-tribute">
+<section class="cajal-tribute" id="cajal">
     <div class="inner">
         <div class="topic-tag reveal" style="text-align:center;">El artista de las neuronas</div>
         <h2 class="reveal reveal-delay-1">Santiago Ramón y Cajal</h2>
@@ -1866,8 +1964,11 @@ function expandCard(card) {
         setTimeout(() => {
             const rect = card.getBoundingClientRect();
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const targetY = scrollTop + rect.top - 24;
+            const targetY = scrollTop + rect.top - 60;
             window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+            // Update URL hash
+            history.replaceState(null, '', '#' + card.dataset.card);
 
             // If this is the Historia card, observe timeline events after expansion
             if (card.dataset.card === 'historia') {
@@ -1889,6 +1990,7 @@ cards.forEach(card => {
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         card.classList.remove('expanded');
+        history.replaceState(null, '', window.location.pathname);
     });
 });
 
@@ -1898,6 +2000,49 @@ document.addEventListener('keydown', (e) => {
         collapseAll(null);
     }
 });
+
+// ===== Deep link: open card from URL hash =====
+function openCardFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    const card = document.querySelector('.topic-card[data-card="' + hash + '"]');
+    if (card) {
+        setTimeout(() => expandCard(card), 600);
+    }
+}
+openCardFromHash();
+window.addEventListener('hashchange', openCardFromHash);
+
+// Update URL hash when expanding a card
+const origExpand = expandCard;
+
+// ===== Nav scroll behavior =====
+const siteNav = document.getElementById('siteNav');
+const heroSection = document.getElementById('inicio');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('#inicio, #temas, #cajal');
+
+// Show/hide nav based on scroll position
+const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.target.id === 'inicio') {
+            siteNav.classList.toggle('visible', !e.isIntersecting);
+        }
+    });
+}, { threshold: 0.1 });
+navObserver.observe(heroSection);
+
+// Active section highlighting
+const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + e.target.id);
+            });
+        }
+    });
+}, { threshold: 0.2, rootMargin: '-52px 0px -60% 0px' });
+sections.forEach(s => sectionObserver.observe(s));
 
 // ===== Timeline IntersectionObserver =====
 function initTimelineObserver() {
