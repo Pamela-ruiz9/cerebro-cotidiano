@@ -2961,30 +2961,6 @@ function initTimelineObserver() {
     });
 })();
 
-// ===== FEATURE 4: SHARE IMAGE GENERATOR =====
-(function() {
-    // Text wrapping helper
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-        var words = text.split(' ');
-        var line = '';
-        var lines = [];
-        for (var i = 0; i < words.length; i++) {
-            var testLine = line + words[i] + ' ';
-            var metrics = ctx.measureText(testLine);
-            if (metrics.width > maxWidth && i > 0) {
-                lines.push(line.trim());
-                line = words[i] + ' ';
-            } else {
-                line = testLine;
-            }
-        }
-        lines.push(line.trim());
-        for (var j = 0; j < lines.length; j++) {
-            ctx.fillText(lines[j], x, y + (j * lineHeight));
-        }
-        return lines.length;
-    }
-
 // ===== COLLAPSIBLE REFERENCES =====
 (function() {
     document.addEventListener('click', function(e) {
