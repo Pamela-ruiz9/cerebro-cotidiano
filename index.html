@@ -1164,6 +1164,155 @@
             }
         }
 
+        /* ===== SHARE BUTTON ===== */
+        .card-share-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 5.8rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--purple-wash);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease);
+            z-index: 5;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .card-share-btn:hover {
+            background: var(--purple-glow);
+            transform: scale(1.1);
+        }
+
+        .card-share-btn .share-tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 6px;
+            background: var(--text);
+            color: white;
+            font-family: var(--sans);
+            font-size: 0.68rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .card-share-btn:hover .share-tooltip {
+            opacity: 1;
+        }
+
+        .share-generating {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* ===== SOBRE SECTION ===== */
+        .sobre-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: var(--cream);
+            border-top: 1px solid var(--sand);
+            position: relative;
+        }
+
+        .sobre-inner {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .sobre-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-soft), var(--purple), var(--purple-soft));
+            margin: 0 auto 2.5rem;
+            border-radius: 1px;
+        }
+
+        .sobre-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .sobre-section p {
+            font-family: var(--sans);
+            font-size: 1.02rem;
+            color: var(--text-soft);
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .sobre-section p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .sobre-signature {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--sand);
+            text-align: center;
+        }
+
+        .sobre-signature .sig-name {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .sobre-signature .sig-affiliation {
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .sobre-signature a {
+            color: var(--purple);
+            text-decoration: none;
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .sobre-signature a:hover {
+            text-decoration: underline;
+        }
+
+        .sobre-divider-bottom {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-soft), var(--purple), var(--purple-soft));
+            margin: 2.5rem auto 0;
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .card-share-btn {
+                width: 32px;
+                height: 32px;
+                right: 5rem;
+                font-size: 0.9rem;
+            }
+            .sobre-section {
+                padding: 3.5rem 1.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .cards-grid {
                 grid-template-columns: 1fr;
@@ -1275,6 +1424,7 @@
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#temas">Temas</a></li>
             <li><a href="#cajal">Cajal</a></li>
+            <li><a href="#sobre">Sobre</a></li>
         </ul>
     </div>
 </nav>
@@ -1339,6 +1489,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1498,6 +1649,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1545,6 +1697,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1586,6 +1739,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1627,6 +1781,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1674,6 +1829,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1715,6 +1871,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1756,6 +1913,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1803,6 +1961,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1844,6 +2003,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1885,6 +2045,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1932,6 +2093,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -1973,6 +2135,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2014,6 +2177,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2061,6 +2225,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2102,6 +2267,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2143,6 +2309,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2190,6 +2357,7 @@
                 <button class="card-close-btn" aria-label="Cerrar">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                <button class="card-share-btn" aria-label="Compartir" title="Compartir">📲<span class="share-tooltip">Compartir</span></button>
                 <button class="card-reading-btn" aria-label="Modo lectura" title="Modo lectura">📖</button>
                 <div class="card-expanded-inner">
                     <div class="card-expanded-image">
@@ -2227,6 +2395,24 @@
             <img src="img/cajal-purkinje.jpg" alt="Cajal — Neurona de Purkinje del cerebelo humano">
             <img src="img/cajal-brain.jpg" alt="Cajal — Células nerviosas del cerebro">
         </div>
+    </div>
+</section>
+
+<!-- ===== SOBRE ESTE PROYECTO ===== -->
+<section class="sobre-section" id="sobre">
+    <div class="sobre-inner">
+        <div class="sobre-divider reveal"></div>
+        <h2 class="reveal reveal-delay-1">Sobre este proyecto</h2>
+        <p class="reveal reveal-delay-2">Cerebro Cotidiano nació de una idea simple: la neurociencia no debería vivir solo en papers y laboratorios. Cada día, tu cerebro hace cosas extraordinarias — desde soñar hasta enamorarte, desde bostezar hasta recordar. Y detrás de cada una hay ciencia fascinante.</p>
+        <p class="reveal reveal-delay-2">Lo que hace diferente a este proyecto es su enfoque: cada tema de neurociencia está acompañado de una obra de arte que conecta con su esencia. No es decoración — es diálogo. Van Gogh pintó tormentas eléctricas que podrían ser convulsiones. Dalí derritió relojes que funcionan como la memoria. Klimt envolvió en oro lo que la dopamina nos hace sentir.</p>
+        <p class="reveal reveal-delay-3">Las ilustraciones de Santiago Ramón y Cajal (Nobel 1906) son el puente perfecto entre ciencia y arte: un científico que dibujaba neuronas con la precisión de un artista y la curiosidad de un niño.</p>
+        <p class="reveal reveal-delay-3">Este proyecto es de divulgación. No pretende reemplazar papers ni diagnósticos médicos. Pretende que la próxima vez que bosteces, te acuerdes de que tu cerebro se está enfriando. Y que eso te parezca increíble.</p>
+        <div class="sobre-signature reveal reveal-delay-4">
+            <div class="sig-name">Pame Ruiz</div>
+            <div class="sig-affiliation">Facultad de Ciencias, UNAM</div>
+            <a href="https://instagram.com/pamer.raw" target="_blank" rel="noopener">@pamer.raw</a>
+        </div>
+        <div class="sobre-divider-bottom reveal reveal-delay-4"></div>
     </div>
 </section>
 
@@ -2357,7 +2543,7 @@ const origExpand = expandCard;
 const siteNav = document.getElementById('siteNav');
 const heroSection = document.getElementById('inicio');
 const navLinks = document.querySelectorAll('.nav-links a');
-const sections = document.querySelectorAll('#inicio, #temas, #cajal');
+const sections = document.querySelectorAll('#inicio, #temas, #cajal, #sobre');
 
 // Show/hide nav based on scroll position
 const navObserver = new IntersectionObserver(entries => {
@@ -2609,6 +2795,177 @@ function initTimelineObserver() {
             closeLightbox();
             e.stopPropagation();
         }
+    });
+})();
+
+// ===== FEATURE 4: SHARE IMAGE GENERATOR =====
+(function() {
+    // Text wrapping helper
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+        var lines = [];
+        for (var i = 0; i < words.length; i++) {
+            var testLine = line + words[i] + ' ';
+            var metrics = ctx.measureText(testLine);
+            if (metrics.width > maxWidth && i > 0) {
+                lines.push(line.trim());
+                line = words[i] + ' ';
+            } else {
+                line = testLine;
+            }
+        }
+        lines.push(line.trim());
+        for (var j = 0; j < lines.length; j++) {
+            ctx.fillText(lines[j], x, y + (j * lineHeight));
+        }
+        return lines.length;
+    }
+
+    function generateShareImage(card) {
+        var btn = card.querySelector('.card-share-btn');
+        if (btn) btn.classList.add('share-generating');
+
+        var canvas = document.createElement('canvas');
+        canvas.width = 1080;
+        canvas.height = 1080;
+        var ctx = canvas.getContext('2d');
+
+        // Background gradient
+        var grad = ctx.createLinearGradient(0, 0, 0, 1080);
+        grad.addColorStop(0, '#faf6f0');
+        grad.addColorStop(1, '#f0e8dc');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1080);
+
+        // Get card data
+        var expandedText = card.querySelector('.card-expanded-text');
+        var expandedImage = card.querySelector('.card-expanded-image');
+        var tag = (expandedText.querySelector('.card-tag') || {}).textContent || '';
+        var title = (expandedText.querySelector('.card-title') || {}).textContent || '';
+        var question = (expandedText.querySelector('.card-question') || {}).textContent || '';
+        var bodyEl = expandedText.querySelector('.card-body');
+        var strongEl = bodyEl ? bodyEl.querySelector('strong') : null;
+        var keyFact = strongEl ? strongEl.textContent : '';
+        var imgEl = expandedImage ? expandedImage.querySelector('img') : null;
+
+        function drawTextSection() {
+            var textY = 680;
+            var padding = 70;
+            var maxW = 1080 - (padding * 2);
+
+            // Category tag
+            ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
+            ctx.fillStyle = '#7b68ee';
+            ctx.textAlign = 'left';
+            ctx.fillText(tag.toUpperCase(), padding, textY);
+            textY += 36;
+
+            // Title
+            ctx.font = 'bold 42px Georgia, serif';
+            ctx.fillStyle = '#2a2420';
+            var titleLines = wrapText(ctx, title, padding, textY, maxW, 50);
+            textY += titleLines * 50 + 12;
+
+            // Question
+            ctx.font = 'italic 30px Georgia, serif';
+            ctx.fillStyle = '#c4a35a';
+            var qLines = wrapText(ctx, question, padding, textY, maxW, 38);
+            textY += qLines * 38 + 16;
+
+            // Key fact
+            if (keyFact) {
+                ctx.font = '26px system-ui, -apple-system, sans-serif';
+                ctx.fillStyle = '#5a524a';
+                var factLines = wrapText(ctx, keyFact, padding, textY, maxW, 34);
+                textY += factLines * 34 + 20;
+            }
+
+            // Divider
+            ctx.beginPath();
+            ctx.moveTo(padding, textY);
+            ctx.lineTo(1080 - padding, textY);
+            ctx.strokeStyle = 'rgba(123,104,238,0.25)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            textY += 28;
+
+            // Branding
+            ctx.font = 'bold 24px Georgia, serif';
+            ctx.fillStyle = '#2a2420';
+            ctx.textAlign = 'center';
+            ctx.fillText('Cerebro Cotidiano \uD83E\uDDE0', 540, textY);
+            textY += 28;
+
+            ctx.font = '18px system-ui, -apple-system, sans-serif';
+            ctx.fillStyle = '#8a8078';
+            ctx.fillText('por Pame Ruiz', 540, textY);
+            textY += 26;
+
+            ctx.font = '16px system-ui, -apple-system, sans-serif';
+            ctx.fillStyle = '#8a8078';
+            ctx.fillText('pamela-ruiz9.github.io/cerebro-cotidiano', 540, textY);
+        }
+
+        function triggerDownload() {
+            try {
+                var link = document.createElement('a');
+                link.download = 'cerebro-cotidiano-' + (card.dataset.card || 'tema') + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } catch(e) {
+                alert('No se pudo generar la imagen');
+            }
+            if (btn) btn.classList.remove('share-generating');
+        }
+
+        if (imgEl && imgEl.src) {
+            var img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                // Draw image centered in top ~60%
+                var imgAreaH = 630;
+                var imgPad = 60;
+                var maxImgW = 1080 - (imgPad * 2);
+                var maxImgH = imgAreaH - (imgPad * 2);
+
+                var scale = Math.min(maxImgW / img.width, maxImgH / img.height);
+                var drawW = img.width * scale;
+                var drawH = img.height * scale;
+                var drawX = (1080 - drawW) / 2;
+                var drawY = imgPad + (maxImgH - drawH) / 2;
+
+                // Shadow
+                ctx.save();
+                ctx.shadowColor = 'rgba(0,0,0,0.15)';
+                ctx.shadowBlur = 30;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 8;
+                ctx.drawImage(img, drawX, drawY, drawW, drawH);
+                ctx.restore();
+
+                drawTextSection();
+                triggerDownload();
+            };
+            img.onerror = function() {
+                // Draw without image
+                drawTextSection();
+                triggerDownload();
+            };
+            img.src = imgEl.src;
+        } else {
+            drawTextSection();
+            triggerDownload();
+        }
+    }
+
+    // Attach click to all share buttons
+    document.querySelectorAll('.card-share-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var card = btn.closest('.topic-card');
+            if (card) generateShareImage(card);
+        });
     });
 })();
 </script>
