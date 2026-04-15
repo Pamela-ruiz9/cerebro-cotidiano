@@ -113,6 +113,21 @@
             background: var(--purple-wash);
         }
 
+        .sound-toggle {
+            font-size: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+            line-height: 1;
+        }
+
+        .sound-toggle:hover {
+            background: var(--purple-wash);
+        }
+
         @media (max-width: 768px) {
             .site-nav { padding: 0 1rem; }
             .nav-inner { height: 46px; }
@@ -1500,6 +1515,7 @@
             <li><a href="#temas">Temas</a></li>
             <li><a href="#cajal">Cajal</a></li>
             <li><a href="#sobre">Sobre</a></li>
+            <li><button class="sound-toggle" id="soundToggle" aria-label="Sonido" title="Activar/desactivar sonidos">🔇</button></li>
         </ul>
     </div>
 </nav>
@@ -2697,6 +2713,7 @@ function expandCard(card) {
     } else {
         // Expand this one
         card.classList.add('expanded');
+        if (window.playUISound) window.playUISound('open');
 
         // Smooth scroll to the card with a small offset
         setTimeout(() => {
@@ -2728,6 +2745,7 @@ cards.forEach(card => {
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         card.classList.remove('expanded');
+        if (window.playUISound) window.playUISound('close');
         history.replaceState(null, '', window.location.pathname);
     });
 });
@@ -3016,6 +3034,39 @@ function initTimelineObserver() {
             e.stopPropagation();
         }
     });
+})();
+
+// ===== UI SOUNDS =====
+(function() {
+    let soundEnabled = false;
+    const toggle = document.getElementById('soundToggle');
+    const openSound = new Audio('audio/open.wav');
+    const closeSound = new Audio('audio/close.wav');
+    openSound.volume = 0.4;
+    closeSound.volume = 0.3;
+
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        soundEnabled = !soundEnabled;
+        toggle.textContent = soundEnabled ? '\uD83D\uDD0A' : '\uD83D\uDD07';
+        toggle.title = soundEnabled ? 'Desactivar sonidos' : 'Activar sonidos';
+        if (soundEnabled) {
+            openSound.play().catch(function(){});
+        }
+    });
+
+    window.playUISound = function(type) {
+        if (!soundEnabled) return;
+        try {
+            if (type === 'open') {
+                openSound.currentTime = 0;
+                openSound.play().catch(function(){});
+            } else if (type === 'close') {
+                closeSound.currentTime = 0;
+                closeSound.play().catch(function(){});
+            }
+        } catch(e) {}
+    };
 })();
 
 // ===== CARD NAVIGATION ARROWS =====
