@@ -25,6 +25,7 @@
             --serif: 'Playfair Display', Georgia, serif;
             --sans: 'Source Sans 3', system-ui, sans-serif;
             --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -183,116 +184,266 @@
             border-radius: 1px;
         }
 
-        /* ===== TOPIC SECTIONS ===== */
-        .topic {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 80vh;
+        /* ===== TOPICS GALLERY (CARDS GRID) ===== */
+        .topics-section {
+            padding: 4rem 2rem 6rem;
+            background: var(--warm-white);
             border-top: 1px solid var(--sand);
         }
 
-        .topic:nth-child(even) {
-            direction: rtl;
+        .topics-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .topic:nth-child(even) > * {
-            direction: ltr;
+        .topics-header .topic-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
         }
 
-        .topic-image {
+        .topics-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== TOPIC CARD ===== */
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.03);
+            transition: box-shadow 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+            position: relative;
+        }
+
+        .topic-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+
+        .topic-card.expanded {
+            grid-column: 1 / -1;
+            cursor: default;
+            transform: none;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        /* --- Collapsed state --- */
+        .card-collapsed {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            min-height: 220px;
+        }
+
+        .card-thumb {
+            width: 180px;
+            min-height: 220px;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            background: var(--warm-white);
+        }
+
+        .card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease);
+        }
+
+        .topic-card:hover .card-thumb img {
+            transform: scale(1.05);
+        }
+
+        .card-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 60%, rgba(123,104,238,0.06) 100%);
+            pointer-events: none;
+        }
+
+        .card-summary {
+            flex: 1;
+            padding: 1.6rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--purple);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+            color: var(--text);
+        }
+
+        .card-question {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--gold);
+            line-height: 1.5;
+        }
+
+        .card-expand-icon {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.2rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--purple-wash);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s var(--ease-smooth), transform 0.4s var(--ease);
+        }
+
+        .card-expand-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--purple);
+            stroke-width: 2;
+            fill: none;
+            transition: transform 0.4s var(--ease);
+        }
+
+        .topic-card:hover .card-expand-icon {
+            background: var(--purple-glow);
+        }
+
+        .topic-card.expanded .card-collapsed {
+            display: none;
+        }
+
+        /* --- Expanded state --- */
+        .card-expanded {
+            display: none;
+            opacity: 0;
+        }
+
+        .topic-card.expanded .card-expanded {
+            display: block;
+            animation: cardFadeIn 0.5s var(--ease) forwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-expanded-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .card-expanded-image {
             position: relative;
             overflow: hidden;
             background: var(--warm-white);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem;
+            padding: 2.5rem;
         }
 
-        .topic-image img {
+        .card-expanded-image img {
             max-width: 100%;
-            max-height: 70vh;
+            max-height: 60vh;
             object-fit: contain;
             border-radius: 4px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-            transition: transform 0.8s var(--ease);
         }
 
-        .topic-image:hover img {
-            transform: scale(1.02);
-        }
-
-        .painting-info {
+        .card-painting-info {
             position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            right: 1.5rem;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            right: 1.2rem;
             background: rgba(255,255,255,0.92);
             backdrop-filter: blur(10px);
-            padding: 1rem 1.2rem;
+            padding: 0.9rem 1.1rem;
             border-radius: 8px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-soft);
             line-height: 1.5;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s var(--ease);
         }
 
-        .painting-info .artist {
+        .card-painting-info .artist {
             font-weight: 600;
             color: var(--text);
         }
 
-        .topic-image:hover .painting-info {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .topic-text {
+        .card-expanded-text {
+            padding: 3rem 3rem 3rem 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 4rem 3.5rem;
+            position: relative;
         }
 
-        .topic-tag {
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--purple);
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .card-expanded-text .card-tag {
+            margin-bottom: 0.8rem;
         }
 
-        .topic-text h2 {
-            font-family: var(--serif);
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
+        .card-expanded-text .card-title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            margin-bottom: 0.4rem;
         }
 
-        .topic-question {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
+        .card-expanded-text .card-question {
+            font-size: 1.05rem;
+            margin-bottom: 1.3rem;
         }
 
-        .topic-body {
+        .card-body {
             font-size: 1rem;
             color: var(--text-soft);
             line-height: 1.9;
         }
 
-        .topic-body strong {
+        .card-body strong {
             color: var(--text);
             font-weight: 600;
         }
 
-        .topic-detail {
+        .card-detail {
             margin-top: 1.2rem;
             padding: 1rem 1.2rem;
             background: var(--purple-wash);
@@ -303,16 +454,35 @@
             line-height: 1.7;
         }
 
-        /* Alternate background colors for variety */
-        .topic.bg-white { background: white; }
-        .topic.bg-cream { background: var(--cream); }
-        .topic.bg-warm { background: var(--warm-white); }
-        .topic.bg-purple { background: linear-gradient(135deg, #f8f6ff 0%, #f0ecff 100%); }
+        .card-close-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--purple-wash);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease);
+            z-index: 5;
+        }
 
-        .topic.bg-white .topic-image,
-        .topic.bg-cream .topic-image,
-        .topic.bg-warm .topic-image,
-        .topic.bg-purple .topic-image { background: transparent; }
+        .card-close-btn:hover {
+            background: var(--purple-glow);
+            transform: scale(1.1);
+        }
+
+        .card-close-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--purple);
+            stroke-width: 2.5;
+            fill: none;
+        }
 
         /* ===== CAJAL SECTION ===== */
         .cajal-tribute {
@@ -411,36 +581,76 @@
         .reveal-delay-1 { transition-delay: 0.1s; }
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .topic {
+        @media (max-width: 900px) {
+            .card-expanded-inner {
                 grid-template-columns: 1fr;
-                min-height: auto;
             }
 
-            .topic:nth-child(even) {
-                direction: ltr;
-            }
-
-            .topic-image {
-                min-height: 300px;
+            .card-expanded-image {
+                min-height: 250px;
                 padding: 2rem;
             }
 
-            .topic-image img {
+            .card-expanded-image img {
                 max-height: 300px;
             }
 
-            .painting-info {
-                opacity: 1;
-                transform: translateY(0);
-                font-size: 0.75rem;
-                padding: 0.8rem 1rem;
+            .card-expanded-text {
+                padding: 2rem 1.5rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
 
-            .topic-text {
-                padding: 2.5rem 1.5rem 3rem;
+            .card-collapsed {
+                min-height: 160px;
+            }
+
+            .card-thumb {
+                width: 130px;
+                min-height: 160px;
+            }
+
+            .card-summary {
+                padding: 1.2rem 1.4rem;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-question {
+                font-size: 0.88rem;
+            }
+
+            .card-expanded-image {
+                min-height: 220px;
+                padding: 1.5rem;
+            }
+
+            .card-expanded-image img {
+                max-height: 250px;
+            }
+
+            .card-painting-info {
+                font-size: 0.72rem;
+                padding: 0.7rem 0.9rem;
+            }
+
+            .card-expanded-text {
+                padding: 1.5rem 1.2rem 2rem;
+            }
+
+            .card-expanded-text .card-title {
+                font-size: 1.5rem;
             }
 
             .cajal-gallery img {
@@ -450,6 +660,10 @@
 
             .hero-cajal {
                 max-width: 200px;
+            }
+
+            .topics-section {
+                padding: 3rem 1rem 4rem;
             }
         }
     </style>
@@ -479,111 +693,255 @@
     </div>
 </section>
 
-<!-- ===== TOPIC 1: BOSTEZOS ===== -->
-<section class="topic bg-white">
-    <div class="topic-image">
-        <img src="img/ducreux-yawn.jpg" alt="El que bosteza — Joseph Ducreux, c. 1783" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Joseph Ducreux</span> · <em>Le Bâilleur</em> (El que bosteza), c. 1783<br>
-            Óleo sobre lienzo. Ducreux rompió con la tradición del retrato formal pintándose a sí mismo bostezando — un gesto cotidiano elevado a arte. El único autorretrato del siglo XVIII que captura algo tan humano.
-        </div>
+<!-- ===== TOPICS GALLERY ===== -->
+<section class="topics-section">
+    <div class="topics-header">
+        <div class="topic-tag reveal">Galería</div>
+        <h2 class="reveal reveal-delay-1">Explora los temas</h2>
     </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Termorregulación</div>
-        <h2 class="reveal reveal-delay-1">Bostezando</h2>
-        <p class="topic-question reveal reveal-delay-2">¿Qué significa realmente un bostezo?</p>
-        <p class="topic-body reveal reveal-delay-2">Según un estudio de Gary Hack (Universidad de Maryland), cuando bostezamos estamos <strong>enfriando nuestro cerebro</strong>. El bostezo aumenta el flujo de sangre fría hacia el cerebro y expulsa la sangre caliente.</p>
-        <div class="topic-detail reveal reveal-delay-3">No es aburrimiento — es termorregulación. Tu cerebro funciona mejor a cierta temperatura, y el bostezo es su mecanismo de enfriamiento natural. Por eso bostezamos más cuando hace calor o estamos cansados.</div>
-    </div>
-</section>
 
-<!-- ===== TOPIC 2: EPILEPSIA ===== -->
-<section class="topic bg-cream">
-    <div class="topic-image">
-        <img src="img/vangogh-starrynight.jpg" alt="La Noche Estrellada — Vincent van Gogh, 1889" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Vincent van Gogh</span> · <em>De sterrennacht</em> (La Noche Estrellada), 1889<br>
-            Óleo sobre lienzo. Pintada desde el manicomio de Saint-Rémy-de-Provence, donde Van Gogh fue internado tras episodios de convulsiones. Los remolinos del cielo podrían reflejar su experiencia neurológica — una tormenta visual hecha arte.
-        </div>
-    </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Actividad neuronal</div>
-        <h2 class="reveal reveal-delay-1">Epilepsia</h2>
-        <p class="topic-question reveal reveal-delay-2">¿Qué sucede durante una convulsión?</p>
-        <p class="topic-body reveal reveal-delay-2">Las convulsiones se producen por un <strong>patrón anormal de actividad neuronal</strong>. Imagina que todas las neuronas de una zona del cerebro se disparan al mismo tiempo, como si una orquesta tocara todas las notas a la vez.</p>
-        <div class="topic-detail reveal reveal-delay-3">El resultado es una tormenta eléctrica que el cuerpo no puede controlar. Van Gogh probablemente la experimentó — y quizá la pintó sin saberlo en esos cielos turbulentos.</div>
-    </div>
-</section>
+    <div class="cards-grid">
 
-<!-- ===== TOPIC 3: SUEÑO ===== -->
-<section class="topic bg-white">
-    <div class="topic-image">
-        <img src="img/rousseau-gypsy.jpg" alt="La Gitana Dormida — Henri Rousseau, 1897" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Henri Rousseau</span> · <em>La Bohémienne endormie</em> (La Gitana Dormida), 1897<br>
-            Óleo sobre lienzo. Una mujer duerme profundamente en el desierto mientras un león la olfatea sin despertarla. La pintura captura ese estado liminal entre la consciencia y el sueño — donde el cuerpo descansa pero el cerebro no se detiene.
-        </div>
-    </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Sueño</div>
-        <h2 class="reveal reveal-delay-1">Duerme</h2>
-        <p class="topic-question reveal reveal-delay-2">¿Qué sucede cuando duermo?</p>
-        <p class="topic-body reveal reveal-delay-2">Mientras estamos despiertos, el cerebro activa neurotransmisores que nos mantienen alertas. Al dormir, <strong>el cerebro no se apaga — cambia de modo</strong>. Consolida memorias, limpia desechos metabólicos a través del sistema glinfático, repara conexiones sinápticas y procesa emociones.</p>
-        <div class="topic-detail reveal reveal-delay-3">Dormir mal no es solo cansancio — es sabotear tu hardware. El sistema glinfático (descubierto apenas en 2012) elimina proteínas tóxicas como la beta-amiloide, asociada al Alzheimer. Literalmente, tu cerebro se lava mientras duermes.</div>
-    </div>
-</section>
+        <!-- CARD 1: BOSTEZOS -->
+        <article class="topic-card reveal" data-card="bostezos">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/ducreux-yawn.jpg" alt="El que bosteza — Joseph Ducreux, c. 1783">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Termorregulación</div>
+                    <h3 class="card-title">Bostezando</h3>
+                    <p class="card-question">¿Qué significa realmente un bostezo?</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/ducreux-yawn.jpg" alt="El que bosteza — Joseph Ducreux, c. 1783">
+                        <div class="card-painting-info">
+                            <span class="artist">Joseph Ducreux</span> · <em>Le Bâilleur</em> (El que bosteza), c. 1783<br>
+                            Óleo sobre lienzo. Ducreux rompió con la tradición del retrato formal pintándose a sí mismo bostezando — un gesto cotidiano elevado a arte. El único autorretrato del siglo XVIII que captura algo tan humano.
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Termorregulación</div>
+                        <h3 class="card-title">Bostezando</h3>
+                        <p class="card-question">¿Qué significa realmente un bostezo?</p>
+                        <p class="card-body">Según un estudio de Gary Hack (Universidad de Maryland), cuando bostezamos estamos <strong>enfriando nuestro cerebro</strong>. El bostezo aumenta el flujo de sangre fría hacia el cerebro y expulsa la sangre caliente.</p>
+                        <div class="card-detail">No es aburrimiento — es termorregulación. Tu cerebro funciona mejor a cierta temperatura, y el bostezo es su mecanismo de enfriamiento natural. Por eso bostezamos más cuando hace calor o estamos cansados.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-<!-- ===== TOPIC 4: DOPAMINA ===== -->
-<section class="topic bg-purple">
-    <div class="topic-image">
-        <img src="img/klimt-kiss.jpg" alt="El Beso — Gustav Klimt, 1907-1908" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Gustav Klimt</span> · <em>Der Kuss</em> (El Beso), 1907–1908<br>
-            Óleo y pan de oro sobre lienzo. El momento cumbre del placer y la conexión humana, envuelto en oro. Klimt capturó la esencia de la dopamina sin saberlo: ese instante de recompensa donde el cerebro dice "esto es lo que quiero, repítelo."
-        </div>
-    </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Dopamina</div>
-        <h2 class="reveal reveal-delay-1">Aprendiendo placer</h2>
-        <p class="topic-question reveal reveal-delay-2">¿Te emociona aprender algo nuevo?</p>
-        <p class="topic-body reveal reveal-delay-2">Cuando aprendes algo retador pero alcanzable, tu cerebro activa el <strong>sistema de recompensa</strong>: aumenta la dopamina, refuerza conexiones sinápticas y sientes motivación por seguir. Esa chispa que sientes al lograrlo no es casualidad — es neurociencia en acción.</p>
-        <div class="topic-detail reveal reveal-delay-3">Por eso los videojuegos son adictivos: dificultad progresiva = dopamina constante. Y por eso aprender algo nuevo se siente tan bien. Tu cerebro está diseñado para recompensarte por crecer.</div>
-    </div>
-</section>
+        <!-- CARD 2: EPILEPSIA -->
+        <article class="topic-card reveal reveal-delay-1" data-card="epilepsia">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/vangogh-starrynight.jpg" alt="La Noche Estrellada — Vincent van Gogh, 1889">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Actividad neuronal</div>
+                    <h3 class="card-title">Epilepsia</h3>
+                    <p class="card-question">¿Qué sucede durante una convulsión?</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/vangogh-starrynight.jpg" alt="La Noche Estrellada — Vincent van Gogh, 1889">
+                        <div class="card-painting-info">
+                            <span class="artist">Vincent van Gogh</span> · <em>De sterrennacht</em> (La Noche Estrellada), 1889<br>
+                            Óleo sobre lienzo. Pintada desde el manicomio de Saint-Rémy-de-Provence, donde Van Gogh fue internado tras episodios de convulsiones. Los remolinos del cielo podrían reflejar su experiencia neurológica — una tormenta visual hecha arte.
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Actividad neuronal</div>
+                        <h3 class="card-title">Epilepsia</h3>
+                        <p class="card-question">¿Qué sucede durante una convulsión?</p>
+                        <p class="card-body">Las convulsiones se producen por un <strong>patrón anormal de actividad neuronal</strong>. Imagina que todas las neuronas de una zona del cerebro se disparan al mismo tiempo, como si una orquesta tocara todas las notas a la vez.</p>
+                        <div class="card-detail">El resultado es una tormenta eléctrica que el cuerpo no puede controlar. Van Gogh probablemente la experimentó — y quizá la pintó sin saberlo en esos cielos turbulentos.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-<!-- ===== TOPIC 5: MEMORIA ===== -->
-<section class="topic bg-warm">
-    <div class="topic-image">
-        <img src="img/dali-memory.jpg" alt="La persistencia de la memoria — Salvador Dalí, 1931" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Salvador Dalí</span> · <em>La persistència de la memòria</em>, 1931<br>
-            Óleo sobre lienzo. Los relojes blandos de Dalí no son solo surrealismo — son una metáfora perfecta de cómo funciona la memoria: maleable, deformable, nunca fija. Cada vez que recuerdas algo, lo estás derritiendo y reformando.
-        </div>
-    </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Memoria</div>
-        <h2 class="reveal reveal-delay-1">Modificando recuerdos</h2>
-        <p class="topic-question reveal reveal-delay-2">¿Se pueden reescribir los recuerdos?</p>
-        <p class="topic-body reveal reveal-delay-2">Al recordar algo, ese recuerdo se vuelve <strong>maleable por unos minutos</strong>: es el proceso de reconsolidación. Si en ese lapso incorporas nueva información emocional o factual, el recuerdo puede actualizarse — volverse menos intenso o más preciso.</p>
-        <div class="topic-detail reveal reveal-delay-3">Cada vez que recuerdas algo, lo estás editando un poco. Tu memoria no es un disco duro — es un documento vivo. Esto tiene aplicaciones terapéuticas reales: la terapia de reconsolidación ayuda a tratar el TEPT reactivando y "reescribiendo" recuerdos traumáticos.</div>
-    </div>
-</section>
+        <!-- CARD 3: SUEÑO -->
+        <article class="topic-card reveal reveal-delay-2" data-card="sueno">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/rousseau-gypsy.jpg" alt="La Gitana Dormida — Henri Rousseau, 1897">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Sueño</div>
+                    <h3 class="card-title">Duerme</h3>
+                    <p class="card-question">¿Qué sucede cuando duermo?</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/rousseau-gypsy.jpg" alt="La Gitana Dormida — Henri Rousseau, 1897">
+                        <div class="card-painting-info">
+                            <span class="artist">Henri Rousseau</span> · <em>La Bohémienne endormie</em> (La Gitana Dormida), 1897<br>
+                            Óleo sobre lienzo. Una mujer duerme profundamente en el desierto mientras un león la olfatea sin despertarla. La pintura captura ese estado liminal entre la consciencia y el sueño — donde el cuerpo descansa pero el cerebro no se detiene.
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Sueño</div>
+                        <h3 class="card-title">Duerme</h3>
+                        <p class="card-question">¿Qué sucede cuando duermo?</p>
+                        <p class="card-body">Mientras estamos despiertos, el cerebro activa neurotransmisores que nos mantienen alertas. Al dormir, <strong>el cerebro no se apaga — cambia de modo</strong>. Consolida memorias, limpia desechos metabólicos a través del sistema glinfático, repara conexiones sinápticas y procesa emociones.</p>
+                        <div class="card-detail">Dormir mal no es solo cansancio — es sabotear tu hardware. El sistema glinfático (descubierto apenas en 2012) elimina proteínas tóxicas como la beta-amiloide, asociada al Alzheimer. Literalmente, tu cerebro se lava mientras duermes.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-<!-- ===== TOPIC 6: HISTORIA ===== -->
-<section class="topic bg-cream">
-    <div class="topic-image">
-        <img src="img/rembrandt-anatomy.jpg" alt="Lección de anatomía del Dr. Nicolaes Tulp — Rembrandt, 1632" class="reveal">
-        <div class="painting-info">
-            <span class="artist">Rembrandt van Rijn</span> · <em>De Anatomische les van Dr. Nicolaes Tulp</em>, 1632<br>
-            Óleo sobre lienzo. Una disección pública en Ámsterdam: el Dr. Tulp expone los tendones del brazo ante cirujanos fascinados. Es el nacimiento de la anatomía moderna como espectáculo y ciencia — la misma curiosidad que eventualmente nos llevó al cerebro.
-        </div>
-    </div>
-    <div class="topic-text">
-        <div class="topic-tag reveal">Historia</div>
-        <h2 class="reveal reveal-delay-1">Historia de la Neurociencia</h2>
-        <p class="topic-question reveal reveal-delay-2">De los inicios a la actualidad</p>
-        <p class="topic-body reveal reveal-delay-2">Desde las trepanaciones prehistóricas hasta la resonancia magnética funcional, la neurociencia ha evolucionado a través de siglos de curiosidad, experimentos audaces y descubrimientos que transformaron nuestra comprensión del cerebro.</p>
-        <div class="topic-detail reveal reveal-delay-3">De "el corazón es la sede del alma" (Aristóteles) a mapear 86 mil millones de neuronas. Hipócrates fue el primero en decir que el cerebro era el órgano del pensamiento. Galeno lo confirmó con disecciones. Cajal lo dibujó. Y nosotros seguimos descifrándolo.</div>
+        <!-- CARD 4: DOPAMINA -->
+        <article class="topic-card reveal reveal-delay-3" data-card="dopamina">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/klimt-kiss.jpg" alt="El Beso — Gustav Klimt, 1907-1908">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Dopamina</div>
+                    <h3 class="card-title">Aprendiendo placer</h3>
+                    <p class="card-question">¿Te emociona aprender algo nuevo?</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/klimt-kiss.jpg" alt="El Beso — Gustav Klimt, 1907-1908">
+                        <div class="card-painting-info">
+                            <span class="artist">Gustav Klimt</span> · <em>Der Kuss</em> (El Beso), 1907–1908<br>
+                            Óleo y pan de oro sobre lienzo. El momento cumbre del placer y la conexión humana, envuelto en oro. Klimt capturó la esencia de la dopamina sin saberlo: ese instante de recompensa donde el cerebro dice "esto es lo que quiero, repítelo."
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Dopamina</div>
+                        <h3 class="card-title">Aprendiendo placer</h3>
+                        <p class="card-question">¿Te emociona aprender algo nuevo?</p>
+                        <p class="card-body">Cuando aprendes algo retador pero alcanzable, tu cerebro activa el <strong>sistema de recompensa</strong>: aumenta la dopamina, refuerza conexiones sinápticas y sientes motivación por seguir. Esa chispa que sientes al lograrlo no es casualidad — es neurociencia en acción.</p>
+                        <div class="card-detail">Por eso los videojuegos son adictivos: dificultad progresiva = dopamina constante. Y por eso aprender algo nuevo se siente tan bien. Tu cerebro está diseñado para recompensarte por crecer.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- CARD 5: MEMORIA -->
+        <article class="topic-card reveal reveal-delay-4" data-card="memoria">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/dali-memory.jpg" alt="La persistencia de la memoria — Salvador Dalí, 1931">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Memoria</div>
+                    <h3 class="card-title">Modificando recuerdos</h3>
+                    <p class="card-question">¿Se pueden reescribir los recuerdos?</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/dali-memory.jpg" alt="La persistencia de la memoria — Salvador Dalí, 1931">
+                        <div class="card-painting-info">
+                            <span class="artist">Salvador Dalí</span> · <em>La persistència de la memòria</em>, 1931<br>
+                            Óleo sobre lienzo. Los relojes blandos de Dalí no son solo surrealismo — son una metáfora perfecta de cómo funciona la memoria: maleable, deformable, nunca fija. Cada vez que recuerdas algo, lo estás derritiendo y reformando.
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Memoria</div>
+                        <h3 class="card-title">Modificando recuerdos</h3>
+                        <p class="card-question">¿Se pueden reescribir los recuerdos?</p>
+                        <p class="card-body">Al recordar algo, ese recuerdo se vuelve <strong>maleable por unos minutos</strong>: es el proceso de reconsolidación. Si en ese lapso incorporas nueva información emocional o factual, el recuerdo puede actualizarse — volverse menos intenso o más preciso.</p>
+                        <div class="card-detail">Cada vez que recuerdas algo, lo estás editando un poco. Tu memoria no es un disco duro — es un documento vivo. Esto tiene aplicaciones terapéuticas reales: la terapia de reconsolidación ayuda a tratar el TEPT reactivando y "reescribiendo" recuerdos traumáticos.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- CARD 6: HISTORIA -->
+        <article class="topic-card reveal reveal-delay-5" data-card="historia">
+            <!-- Collapsed -->
+            <div class="card-collapsed">
+                <div class="card-thumb">
+                    <img src="img/rembrandt-anatomy.jpg" alt="Lección de anatomía del Dr. Nicolaes Tulp — Rembrandt, 1632">
+                </div>
+                <div class="card-summary">
+                    <div class="card-tag">Historia</div>
+                    <h3 class="card-title">Historia de la Neurociencia</h3>
+                    <p class="card-question">De los inicios a la actualidad</p>
+                    <div class="card-expand-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Expanded -->
+            <div class="card-expanded">
+                <button class="card-close-btn" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="card-expanded-inner">
+                    <div class="card-expanded-image">
+                        <img src="img/rembrandt-anatomy.jpg" alt="Lección de anatomía del Dr. Nicolaes Tulp — Rembrandt, 1632">
+                        <div class="card-painting-info">
+                            <span class="artist">Rembrandt van Rijn</span> · <em>De Anatomische les van Dr. Nicolaes Tulp</em>, 1632<br>
+                            Óleo sobre lienzo. Una disección pública en Ámsterdam: el Dr. Tulp expone los tendones del brazo ante cirujanos fascinados. Es el nacimiento de la anatomía moderna como espectáculo y ciencia — la misma curiosidad que eventualmente nos llevó al cerebro.
+                        </div>
+                    </div>
+                    <div class="card-expanded-text">
+                        <div class="card-tag">Historia</div>
+                        <h3 class="card-title">Historia de la Neurociencia</h3>
+                        <p class="card-question">De los inicios a la actualidad</p>
+                        <p class="card-body">Desde las trepanaciones prehistóricas hasta la resonancia magnética funcional, la neurociencia ha evolucionado a través de siglos de curiosidad, experimentos audaces y descubrimientos que transformaron nuestra comprensión del cerebro.</p>
+                        <div class="card-detail">De "el corazón es la sede del alma" (Aristóteles) a mapear 86 mil millones de neuronas. Hipócrates fue el primero en decir que el cerebro era el órgano del pensamiento. Galeno lo confirmó con disecciones. Cajal lo dibujó. Y nosotros seguimos descifrándolo.</div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
     </div>
 </section>
 
@@ -614,7 +972,7 @@
 </footer>
 
 <script>
-// Intersection Observer for reveal animations
+// ===== Intersection Observer for reveal animations =====
 const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if (e.isIntersecting) {
@@ -624,6 +982,62 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== Card expand/collapse logic =====
+const cards = document.querySelectorAll('.topic-card');
+
+function collapseAll(except) {
+    cards.forEach(card => {
+        if (card !== except && card.classList.contains('expanded')) {
+            card.classList.remove('expanded');
+        }
+    });
+}
+
+function expandCard(card) {
+    const wasExpanded = card.classList.contains('expanded');
+
+    // Collapse all others
+    collapseAll(card);
+
+    if (wasExpanded) {
+        // Toggle off
+        card.classList.remove('expanded');
+    } else {
+        // Expand this one
+        card.classList.add('expanded');
+
+        // Smooth scroll to the card with a small offset
+        setTimeout(() => {
+            const rect = card.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetY = scrollTop + rect.top - 24;
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }, 50);
+    }
+}
+
+cards.forEach(card => {
+    // Click on collapsed area to expand
+    const collapsed = card.querySelector('.card-collapsed');
+    collapsed.addEventListener('click', (e) => {
+        expandCard(card);
+    });
+
+    // Click close button to collapse
+    const closeBtn = card.querySelector('.card-close-btn');
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('expanded');
+    });
+});
+
+// Escape key to close any open card
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        collapseAll(null);
+    }
+});
 </script>
 
 </body>
